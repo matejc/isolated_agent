@@ -1,0 +1,1 @@
+FROM openeuler/opencode:latest

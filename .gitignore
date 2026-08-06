@@ -1,0 +1,5 @@
+/*/state/
+container-netmon
+src/netmon.bpf.o
+src/netmon.skel.h
+tests/test_dns
