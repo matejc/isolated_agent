@@ -2,13 +2,13 @@
 set -euo pipefail
 
 SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
-NETMON_DIR="$SCRIPT_DIR/container-netmon"
-NETMON="$NETMON_DIR/container-netmon"
-AUDIT="$SCRIPT_DIR/container-audit.bt"
+NETMON_DIR="$SCRIPT_DIR/netmon"
+NETMON="$NETMON_DIR/netmon"
+AUDIT="$SCRIPT_DIR/audit.bt"
 
 usage()
 {
-    echo "usage: $0 CONTAINER [container-netmon options]" >&2
+    echo "usage: $0 CONTAINER [netmon options]" >&2
     echo "example: $0 my-container --dns-cache-max 8192" >&2
 }
 

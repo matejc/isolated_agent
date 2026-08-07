@@ -16,7 +16,7 @@ docker run -d --name "$NAME" "$IMAGE" sleep 300 >/dev/null
 PID=$(docker inspect --format '{{.State.Pid}}' "$NAME")
 REL=$(awk -F: '$1 == "0" { print $3; exit }' "/proc/$PID/cgroup")
 CGROUP_ID=$(stat -Lc '%i' "/sys/fs/cgroup$REL")
-sudo ./container-netmon --cgroup-id "$CGROUP_ID" >"$OUT" 2>"$ERR" & MON=$!
+sudo ./netmon --cgroup-id "$CGROUP_ID" >"$OUT" 2>"$ERR" & MON=$!
 sleep 2
 docker exec "$NAME" sh -c 'nslookup example.com >/dev/null && wget -q -O /dev/null http://example.com/'
 sleep 3

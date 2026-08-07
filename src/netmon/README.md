@@ -1,6 +1,6 @@
-# container-netmon
+# netmon
 
-`container-netmon` runs on a Linux host and reports outbound TCP connects and UDP destinations for one cgroup. It correlates those destinations with traditional UDP DNS responses observed by cgroup skb hooks. Event output uses the same labeled text format as `container-audit.bt`; operational messages stay on stderr.
+`netmon` runs on a Linux host and reports outbound TCP connects and UDP destinations for one cgroup. It correlates those destinations with traditional UDP DNS responses observed by cgroup skb hooks. Event output uses the same labeled text format as `audit.bt`; operational messages stay on stderr.
 
 ## Architecture
 
@@ -24,8 +24,8 @@ The Makefile generates `vmlinux.h` from `/sys/kernel/btf/vmlinux`, compiles CO-R
 ## Usage
 
 ```bash
-sudo ./container-netmon --cgroup-id 123456
-sudo ./container-netmon --cgroup-id 123456 --dns-cache-max 8192
+sudo ./netmon --cgroup-id 123456
+sudo ./netmon --cgroup-id 123456 --dns-cache-max 8192
 ```
 
 Options include `--no-dns` and `--dns-cache-max N` (default 4096). Startup reports the cgroup path/ID and attached programs to stderr. Docker lookup is deliberately kept outside the loader; `../bpf_log.sh CONTAINER` resolves the ID and starts both monitoring components.

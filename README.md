@@ -23,7 +23,7 @@ nix-shell
 Build code (optional, will be automatic later on):
 
 ```bash
-make -C ./src/container-netmon
+make -C ./src/netmon
 ```
 
 To inspect the Codex container:
