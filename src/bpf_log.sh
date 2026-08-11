@@ -2,7 +2,7 @@
 set -euo pipefail
 
 SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
-NETMON_DIR="$SCRIPT_DIR/netmon"
+NETMON_DIR="$SCRIPT_DIR/netmon-go"
 NETMON="$NETMON_DIR/netmon"
 AUDIT="$SCRIPT_DIR/audit.bt"
 

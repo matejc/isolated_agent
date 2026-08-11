@@ -9,6 +9,8 @@ in
       bpftrace
       bpftools
       libbpf
+      nodejs
+      go
     ];
     shellHook = ''
       export LIBCLANG_PATH="${pkgs.llvmPackages.libclang}/lib";

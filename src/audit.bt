@@ -5,11 +5,6 @@
 #define O_WRONLY  00000001
 #define O_RDWR    00000002
 
-BEGIN
-{
-    printf("Tracing container cgroup ID %llu\n", $1);
-}
-
 
 /*
  * Executed programs

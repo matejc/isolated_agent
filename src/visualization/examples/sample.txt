@@ -1,0 +1,525 @@
+EXEC time=2026-08-11T12:44:42.502209Z host_pid=155403 ppid=132518 uid=1000 comm=tokio-runtime-w file=/tmp/.tmpsbucyo/lsb_release args=lsb_release -a
+EXEC time=2026-08-11T12:44:42.502245Z host_pid=155403 ppid=132518 uid=1000 comm=tokio-runtime-w file=/usr/local/sbin/lsb_release args=lsb_release -a
+EXEC time=2026-08-11T12:44:42.502264Z host_pid=155403 ppid=132518 uid=1000 comm=tokio-runtime-w file=/usr/local/bin/lsb_release args=lsb_release -a
+EXEC time=2026-08-11T12:44:42.502280Z host_pid=155403 ppid=132518 uid=1000 comm=tokio-runtime-w file=/usr/sbin/lsb_release args=lsb_release -a
+EXEC time=2026-08-11T12:44:42.502296Z host_pid=155403 ppid=132518 uid=1000 comm=tokio-runtime-w file=/usr/bin/lsb_release args=lsb_release -a
+EXEC time=2026-08-11T12:44:42.502311Z host_pid=155403 ppid=132518 uid=1000 comm=tokio-runtime-w file=/sbin/lsb_release args=lsb_release -a
+EXEC time=2026-08-11T12:44:42.502330Z host_pid=155403 ppid=132518 uid=1000 comm=tokio-runtime-w file=/bin/lsb_release args=lsb_release -a
+EXEC time=2026-08-11T12:44:42.502346Z host_pid=155403 ppid=132518 uid=1000 comm=tokio-runtime-w file=/usr/local/share/npm-global/bin/lsb_release args=lsb_release -a
+EXEC time=2026-08-11T12:44:42.502500Z host_pid=155404 ppid=132518 uid=1000 comm=tokio-runtime-w file=/tmp/.tmpsbucyo/getconf args=getconf LONG_BIT
+EXEC time=2026-08-11T12:44:42.502538Z host_pid=155404 ppid=132518 uid=1000 comm=tokio-runtime-w file=/usr/local/sbin/getconf args=getconf LONG_BIT
+EXEC time=2026-08-11T12:44:42.502558Z host_pid=155404 ppid=132518 uid=1000 comm=tokio-runtime-w file=/usr/local/bin/getconf args=getconf LONG_BIT
+EXEC time=2026-08-11T12:44:42.502602Z host_pid=155404 ppid=132518 uid=1000 comm=tokio-runtime-w file=/usr/sbin/getconf args=getconf LONG_BIT
+EXEC time=2026-08-11T12:44:42.502620Z host_pid=155404 ppid=132518 uid=1000 comm=tokio-runtime-w file=/usr/bin/getconf args=getconf LONG_BIT
+RO time=2026-08-11T12:44:42.502894Z host_pid=155404 uid=1000 comm=getconf path=/etc/ld.so.cache flags=0x80000
+RO time=2026-08-11T12:44:42.502914Z host_pid=155404 uid=1000 comm=getconf path=/lib/x86_64-linux-gnu/libc.so.6 flags=0x80000
+EXEC time=2026-08-11T12:44:42.503342Z host_pid=155405 ppid=132518 uid=1000 comm=tokio-runtime-w file=/tmp/.tmpsbucyo/uname args=uname -m
+EXEC time=2026-08-11T12:44:42.503360Z host_pid=155405 ppid=132518 uid=1000 comm=tokio-runtime-w file=/usr/local/sbin/uname args=uname -m
+EXEC time=2026-08-11T12:44:42.503374Z host_pid=155405 ppid=132518 uid=1000 comm=tokio-runtime-w file=/usr/local/bin/uname args=uname -m
+EXEC time=2026-08-11T12:44:42.503390Z host_pid=155405 ppid=132518 uid=1000 comm=tokio-runtime-w file=/usr/sbin/uname args=uname -m
+EXEC time=2026-08-11T12:44:42.503405Z host_pid=155405 ppid=132518 uid=1000 comm=tokio-runtime-w file=/usr/bin/uname args=uname -m
+RO time=2026-08-11T12:44:42.503583Z host_pid=155405 uid=1000 comm=uname path=/etc/ld.so.cache flags=0x80000
+RO time=2026-08-11T12:44:42.503595Z host_pid=155405 uid=1000 comm=uname path=/lib/x86_64-linux-gnu/libc.so.6 flags=0x80000
+EXEC time=2026-08-11T12:44:42.506816Z host_pid=155408 ppid=132518 uid=1000 comm=tokio-runtime-w file=/tmp/.tmpsbucyo/lsb_release args=lsb_release -a
+EXEC time=2026-08-11T12:44:42.506833Z host_pid=155408 ppid=132518 uid=1000 comm=tokio-runtime-w file=/usr/local/sbin/lsb_release args=lsb_release -a
+EXEC time=2026-08-11T12:44:42.506842Z host_pid=155408 ppid=132518 uid=1000 comm=tokio-runtime-w file=/usr/local/bin/lsb_release args=lsb_release -a
+EXEC time=2026-08-11T12:44:42.506851Z host_pid=155408 ppid=132518 uid=1000 comm=tokio-runtime-w file=/usr/sbin/lsb_release args=lsb_release -a
+EXEC time=2026-08-11T12:44:42.506860Z host_pid=155408 ppid=132518 uid=1000 comm=tokio-runtime-w file=/usr/bin/lsb_release args=lsb_release -a
+EXEC time=2026-08-11T12:44:42.506871Z host_pid=155408 ppid=132518 uid=1000 comm=tokio-runtime-w file=/sbin/lsb_release args=lsb_release -a
+EXEC time=2026-08-11T12:44:42.506884Z host_pid=155408 ppid=132518 uid=1000 comm=tokio-runtime-w file=/bin/lsb_release args=lsb_release -a
+EXEC time=2026-08-11T12:44:42.506899Z host_pid=155408 ppid=132518 uid=1000 comm=tokio-runtime-w file=/usr/local/share/npm-global/bin/lsb_release args=lsb_release -a
+EXEC time=2026-08-11T12:44:42.507035Z host_pid=155409 ppid=132518 uid=1000 comm=tokio-runtime-w file=/tmp/.tmpsbucyo/getconf args=getconf LONG_BIT
+EXEC time=2026-08-11T12:44:42.507057Z host_pid=155409 ppid=132518 uid=1000 comm=tokio-runtime-w file=/usr/local/sbin/getconf args=getconf LONG_BIT
+EXEC time=2026-08-11T12:44:42.507069Z host_pid=155409 ppid=132518 uid=1000 comm=tokio-runtime-w file=/usr/local/bin/getconf args=getconf LONG_BIT
+EXEC time=2026-08-11T12:44:42.507081Z host_pid=155409 ppid=132518 uid=1000 comm=tokio-runtime-w file=/usr/sbin/getconf args=getconf LONG_BIT
+EXEC time=2026-08-11T12:44:42.507094Z host_pid=155409 ppid=132518 uid=1000 comm=tokio-runtime-w file=/usr/bin/getconf args=getconf LONG_BIT
+RO time=2026-08-11T12:44:42.507245Z host_pid=155409 uid=1000 comm=getconf path=/etc/ld.so.cache flags=0x80000
+RO time=2026-08-11T12:44:42.507255Z host_pid=155409 uid=1000 comm=getconf path=/lib/x86_64-linux-gnu/libc.so.6 flags=0x80000
+EXEC time=2026-08-11T12:44:42.507493Z host_pid=155410 ppid=132518 uid=1000 comm=tokio-runtime-w file=/tmp/.tmpsbucyo/uname args=uname -m
+EXEC time=2026-08-11T12:44:42.507541Z host_pid=155410 ppid=132518 uid=1000 comm=tokio-runtime-w file=/usr/local/sbin/uname args=uname -m
+EXEC time=2026-08-11T12:44:42.507583Z host_pid=155410 ppid=132518 uid=1000 comm=tokio-runtime-w file=/usr/local/bin/uname args=uname -m
+EXEC time=2026-08-11T12:44:42.507613Z host_pid=155410 ppid=132518 uid=1000 comm=tokio-runtime-w file=/usr/sbin/uname args=uname -m
+EXEC time=2026-08-11T12:44:42.507636Z host_pid=155410 ppid=132518 uid=1000 comm=tokio-runtime-w file=/usr/bin/uname args=uname -m
+RO time=2026-08-11T12:44:42.507873Z host_pid=155410 uid=1000 comm=uname path=/etc/ld.so.cache flags=0x80000
+RO time=2026-08-11T12:44:42.507889Z host_pid=155410 uid=1000 comm=uname path=/lib/x86_64-linux-gnu/libc.so.6 flags=0x80000
+CONNECT time=2026-08-11T12:44:42.510125807Z timestamp_ns=3243017565143 host_pid=132495 tid=155407 uid=1000 comm=tokio-runtime-w protocol=udp dst=192.168.200.1:53 hostnames=
+CONNECT time=2026-08-11T12:44:42.510200877Z timestamp_ns=3243017638551 host_pid=132495 tid=155407 uid=1000 comm=tokio-runtime-w protocol=udp dst=192.168.200.1:53 hostnames=
+CONNECT time=2026-08-11T12:44:42.513079815Z timestamp_ns=3243020517528 host_pid=132495 tid=155407 uid=1000 comm=tokio-runtime-w protocol=udp dst=172.64.155.209:65535 hostnames=chatgpt.com
+CONNECT time=2026-08-11T12:44:42.513091848Z timestamp_ns=3243020529541 host_pid=132495 tid=155407 uid=1000 comm=tokio-runtime-w protocol=udp dst=104.18.32.47:65535 hostnames=chatgpt.com
+CONNECT time=2026-08-11T12:44:42.513099583Z timestamp_ns=3243020537286 host_pid=132495 tid=155407 uid=1000 comm=tokio-runtime-w protocol=udp dst=2a06:98c1:3101::6812:202f:65535 hostnames=chatgpt.com
+CONNECT time=2026-08-11T12:44:42.513112647Z timestamp_ns=3243020550330 host_pid=132495 tid=155407 uid=1000 comm=tokio-runtime-w protocol=udp dst=2606:4700:4408::ac40:9bd1:65535 hostnames=chatgpt.com
+CONNECT time=2026-08-11T12:44:42.513151280Z timestamp_ns=3243020589053 host_pid=132495 tid=132518 uid=1000 comm=tokio-runtime-w protocol=tcp dst=172.64.155.209:443 hostnames=chatgpt.com
+EXEC time=2026-08-11T12:44:42.520164Z host_pid=155413 ppid=155407 uid=1000 comm=tokio-runtime-w file=/tmp/.tmpsbucyo/git args=git rev-parse --is-inside-work-tree
+EXEC time=2026-08-11T12:44:42.520185Z host_pid=155413 ppid=155407 uid=1000 comm=tokio-runtime-w file=/usr/local/sbin/git args=git rev-parse --is-inside-work-tree
+EXEC time=2026-08-11T12:44:42.520197Z host_pid=155413 ppid=155407 uid=1000 comm=tokio-runtime-w file=/usr/local/bin/git args=git rev-parse --is-inside-work-tree
+EXEC time=2026-08-11T12:44:42.520208Z host_pid=155413 ppid=155407 uid=1000 comm=tokio-runtime-w file=/usr/sbin/git args=git rev-parse --is-inside-work-tree
+EXEC time=2026-08-11T12:44:42.520217Z host_pid=155413 ppid=155407 uid=1000 comm=tokio-runtime-w file=/usr/bin/git args=git rev-parse --is-inside-work-tree
+RO time=2026-08-11T12:44:42.520494Z host_pid=155413 uid=1000 comm=git path=/etc/ld.so.cache flags=0x80000
+RO time=2026-08-11T12:44:42.520507Z host_pid=155413 uid=1000 comm=git path=/lib/x86_64-linux-gnu/libpcre2-8.so.0 flags=0x80000
+RO time=2026-08-11T12:44:42.520534Z host_pid=155413 uid=1000 comm=git path=/lib/x86_64-linux-gnu/libz.so.1 flags=0x80000
+RO time=2026-08-11T12:44:42.520557Z host_pid=155413 uid=1000 comm=git path=/lib/x86_64-linux-gnu/libc.so.6 flags=0x80000
+RW time=2026-08-11T12:44:42.520845Z host_pid=155413 uid=1000 comm=git path= flags=0x2
+CONNECT time=2026-08-11T12:44:42.871672271Z timestamp_ns=3243379111798 host_pid=132495 tid=155411 uid=1000 comm=tokio-runtime-w protocol=udp dst=192.168.200.1:53 hostnames=
+CONNECT time=2026-08-11T12:44:42.871706485Z timestamp_ns=3243379144379 host_pid=132495 tid=155411 uid=1000 comm=tokio-runtime-w protocol=udp dst=192.168.200.1:53 hostnames=
+CONNECT time=2026-08-11T12:44:42.874311277Z timestamp_ns=3243381748960 host_pid=132495 tid=155411 uid=1000 comm=tokio-runtime-w protocol=udp dst=172.64.155.209:65535 hostnames=chatgpt.com
+CONNECT time=2026-08-11T12:44:42.874325303Z timestamp_ns=3243381763026 host_pid=132495 tid=155411 uid=1000 comm=tokio-runtime-w protocol=udp dst=104.18.32.47:65535 hostnames=chatgpt.com
+CONNECT time=2026-08-11T12:44:42.874335411Z timestamp_ns=3243381773135 host_pid=132495 tid=155411 uid=1000 comm=tokio-runtime-w protocol=udp dst=2606:4700:4408::ac40:9bd1:65535 hostnames=chatgpt.com
+CONNECT time=2026-08-11T12:44:42.874348997Z timestamp_ns=3243381786911 host_pid=132495 tid=155411 uid=1000 comm=tokio-runtime-w protocol=udp dst=2a06:98c1:3101::6812:202f:65535 hostnames=chatgpt.com
+CONNECT time=2026-08-11T12:44:42.874416866Z timestamp_ns=3243381854749 host_pid=132495 tid=132497 uid=1000 comm=tokio-runtime-w protocol=tcp dst=172.64.155.209:443 hostnames=chatgpt.com
+EXEC time=2026-08-11T12:44:50.618433Z host_pid=155535 ppid=132516 uid=1000 comm=tokio-runtime-w file=/bin/bash args=/bin/bash -lc set +m; source /root/.bashrc && (cat package.json)
+RO time=2026-08-11T12:44:50.619108Z host_pid=155535 uid=1000 comm=bash path=/etc/ld.so.cache flags=0x80000
+RO time=2026-08-11T12:44:50.619124Z host_pid=155535 uid=1000 comm=bash path=/lib/x86_64-linux-gnu/libtinfo.so.6 flags=0x80000
+RO time=2026-08-11T12:44:50.619160Z host_pid=155535 uid=1000 comm=bash path=/lib/x86_64-linux-gnu/libc.so.6 flags=0x80000
+RW time=2026-08-11T12:44:50.619475Z host_pid=155535 uid=1000 comm=bash path= flags=0x802
+RO time=2026-08-11T12:44:50.619518Z host_pid=155535 uid=1000 comm=bash path= flags=0x80000
+RO time=2026-08-11T12:44:50.619533Z host_pid=155535 uid=1000 comm=bash path=/usr/share/locale/locale.alias flags=0x80000
+RO time=2026-08-11T12:44:50.619543Z host_pid=155535 uid=1000 comm=bash path=/usr/lib/locale/C.UTF-8/LC_IDENTIFICATION flags=0x80000
+RO time=2026-08-11T12:44:50.619546Z host_pid=155535 uid=1000 comm=bash path=/usr/lib/locale/C.utf8/LC_IDENTIFICATION flags=0x80000
+RO time=2026-08-11T12:44:50.619560Z host_pid=155535 uid=1000 comm=bash path=/usr/lib/x86_64-linux-gnu/gconv/gconv-modules.cache flags=0x80000
+RO time=2026-08-11T12:44:50.619583Z host_pid=155535 uid=1000 comm=bash path=/usr/lib/locale/C.UTF-8/LC_MEASUREMENT flags=0x80000
+RO time=2026-08-11T12:44:50.619586Z host_pid=155535 uid=1000 comm=bash path=/usr/lib/locale/C.utf8/LC_MEASUREMENT flags=0x80000
+RO time=2026-08-11T12:44:50.619598Z host_pid=155535 uid=1000 comm=bash path=/usr/lib/locale/C.UTF-8/LC_TELEPHONE flags=0x80000
+RO time=2026-08-11T12:44:50.619600Z host_pid=155535 uid=1000 comm=bash path=/usr/lib/locale/C.utf8/LC_TELEPHONE flags=0x80000
+RO time=2026-08-11T12:44:50.619609Z host_pid=155535 uid=1000 comm=bash path=/usr/lib/locale/C.UTF-8/LC_ADDRESS flags=0x80000
+RO time=2026-08-11T12:44:50.619611Z host_pid=155535 uid=1000 comm=bash path=/usr/lib/locale/C.utf8/LC_ADDRESS flags=0x80000
+RO time=2026-08-11T12:44:50.619621Z host_pid=155535 uid=1000 comm=bash path=/usr/lib/locale/C.UTF-8/LC_NAME flags=0x80000
+RO time=2026-08-11T12:44:50.619622Z host_pid=155535 uid=1000 comm=bash path=/usr/lib/locale/C.utf8/LC_NAME flags=0x80000
+RO time=2026-08-11T12:44:50.619633Z host_pid=155535 uid=1000 comm=bash path=/usr/lib/locale/C.UTF-8/LC_PAPER flags=0x80000
+RO time=2026-08-11T12:44:50.619634Z host_pid=155535 uid=1000 comm=bash path=/usr/lib/locale/C.utf8/LC_PAPER flags=0x80000
+RO time=2026-08-11T12:44:50.619647Z host_pid=155535 uid=1000 comm=bash path=/usr/lib/locale/C.UTF-8/LC_MESSAGES flags=0x80000
+RO time=2026-08-11T12:44:50.619649Z host_pid=155535 uid=1000 comm=bash path=/usr/lib/locale/C.utf8/LC_MESSAGES flags=0x80000
+RO time=2026-08-11T12:44:50.619658Z host_pid=155535 uid=1000 comm=bash path=/usr/lib/locale/C.utf8/LC_MESSAGES/SYS_LC_MESSAGES flags=0x80000
+RO time=2026-08-11T12:44:50.619667Z host_pid=155535 uid=1000 comm=bash path=/usr/lib/locale/C.UTF-8/LC_MONETARY flags=0x80000
+RO time=2026-08-11T12:44:50.619669Z host_pid=155535 uid=1000 comm=bash path=/usr/lib/locale/C.utf8/LC_MONETARY flags=0x80000
+RO time=2026-08-11T12:44:50.619679Z host_pid=155535 uid=1000 comm=bash path=/usr/lib/locale/C.UTF-8/LC_COLLATE flags=0x80000
+RO time=2026-08-11T12:44:50.619681Z host_pid=155535 uid=1000 comm=bash path=/usr/lib/locale/C.utf8/LC_COLLATE flags=0x80000
+RO time=2026-08-11T12:44:50.619689Z host_pid=155535 uid=1000 comm=bash path=/usr/lib/locale/C.UTF-8/LC_TIME flags=0x80000
+RO time=2026-08-11T12:44:50.619691Z host_pid=155535 uid=1000 comm=bash path=/usr/lib/locale/C.utf8/LC_TIME flags=0x80000
+RO time=2026-08-11T12:44:50.619700Z host_pid=155535 uid=1000 comm=bash path=/usr/lib/locale/C.UTF-8/LC_NUMERIC flags=0x80000
+RO time=2026-08-11T12:44:50.619701Z host_pid=155535 uid=1000 comm=bash path=/usr/lib/locale/C.utf8/LC_NUMERIC flags=0x80000
+RO time=2026-08-11T12:44:50.619706Z host_pid=155535 uid=1000 comm=bash path=/usr/lib/locale/C.UTF-8/LC_CTYPE flags=0x80000
+RO time=2026-08-11T12:44:50.619708Z host_pid=155535 uid=1000 comm=bash path=/usr/lib/locale/C.utf8/LC_CTYPE flags=0x80000
+RO time=2026-08-11T12:44:50.619819Z host_pid=155535 uid=1000 comm=bash path=/etc/nsswitch.conf flags=0x80000
+RO time=2026-08-11T12:44:50.619838Z host_pid=155535 uid=1000 comm=bash path=/etc/passwd flags=0x80000
+RO time=2026-08-11T12:44:50.619887Z host_pid=155535 uid=1000 comm=bash path=/etc/profile flags=0x0
+RO time=2026-08-11T12:44:50.619973Z host_pid=155535 uid=1000 comm=bash path=/etc/profile.d/ flags=0x90800
+RO time=2026-08-11T12:44:50.620012Z host_pid=155535 uid=1000 comm=bash path=/etc/profile.d/01-locale-fix.sh flags=0x0
+EXEC time=2026-08-11T12:44:50.620266Z host_pid=155536 ppid=155535 uid=1000 comm=bash file=/usr/bin/locale-check args=/usr/bin/locale-check C.UTF-8
+RO time=2026-08-11T12:44:50.620540Z host_pid=155536 uid=1000 comm=locale-check path=/etc/ld.so.cache flags=0x80000
+RO time=2026-08-11T12:44:50.620556Z host_pid=155536 uid=1000 comm=locale-check path=/lib/x86_64-linux-gnu/libc.so.6 flags=0x80000
+RO time=2026-08-11T12:44:50.620720Z host_pid=155536 uid=1000 comm=locale-check path=/usr/lib/locale/locale-archive flags=0x80000
+RO time=2026-08-11T12:44:50.620727Z host_pid=155536 uid=1000 comm=locale-check path=/usr/share/locale/locale.alias flags=0x80000
+RO time=2026-08-11T12:44:50.620731Z host_pid=155536 uid=1000 comm=locale-check path=/usr/lib/locale/C.UTF-8/LC_IDENTIFICATION flags=0x80000
+RO time=2026-08-11T12:44:50.620733Z host_pid=155536 uid=1000 comm=locale-check path=/usr/lib/locale/C.utf8/LC_IDENTIFICATION flags=0x80000
+RO time=2026-08-11T12:44:50.620741Z host_pid=155536 uid=1000 comm=locale-check path=/usr/lib/x86_64-linux-gnu/gconv/gconv-modules.cache flags=0x80000
+RO time=2026-08-11T12:44:50.620751Z host_pid=155536 uid=1000 comm=locale-check path=/usr/lib/locale/C.UTF-8/LC_MEASUREMENT flags=0x80000
+RO time=2026-08-11T12:44:50.620752Z host_pid=155536 uid=1000 comm=locale-check path=/usr/lib/locale/C.utf8/LC_MEASUREMENT flags=0x80000
+RO time=2026-08-11T12:44:50.620758Z host_pid=155536 uid=1000 comm=locale-check path=/usr/lib/locale/C.UTF-8/LC_TELEPHONE flags=0x80000
+RO time=2026-08-11T12:44:50.620759Z host_pid=155536 uid=1000 comm=locale-check path=/usr/lib/locale/C.utf8/LC_TELEPHONE flags=0x80000
+RO time=2026-08-11T12:44:50.620763Z host_pid=155536 uid=1000 comm=locale-check path=/usr/lib/locale/C.UTF-8/LC_ADDRESS flags=0x80000
+RO time=2026-08-11T12:44:50.620764Z host_pid=155536 uid=1000 comm=locale-check path=/usr/lib/locale/C.utf8/LC_ADDRESS flags=0x80000
+RO time=2026-08-11T12:44:50.620770Z host_pid=155536 uid=1000 comm=locale-check path=/usr/lib/locale/C.UTF-8/LC_NAME flags=0x80000
+RO time=2026-08-11T12:44:50.620771Z host_pid=155536 uid=1000 comm=locale-check path=/usr/lib/locale/C.utf8/LC_NAME flags=0x80000
+RO time=2026-08-11T12:44:50.620776Z host_pid=155536 uid=1000 comm=locale-check path=/usr/lib/locale/C.UTF-8/LC_PAPER flags=0x80000
+RO time=2026-08-11T12:44:50.620777Z host_pid=155536 uid=1000 comm=locale-check path=/usr/lib/locale/C.utf8/LC_PAPER flags=0x80000
+RO time=2026-08-11T12:44:50.620785Z host_pid=155536 uid=1000 comm=locale-check path=/usr/lib/locale/C.UTF-8/LC_MESSAGES flags=0x80000
+RO time=2026-08-11T12:44:50.620786Z host_pid=155536 uid=1000 comm=locale-check path=/usr/lib/locale/C.utf8/LC_MESSAGES flags=0x80000
+RO time=2026-08-11T12:44:50.620791Z host_pid=155536 uid=1000 comm=locale-check path=/usr/lib/locale/C.utf8/LC_MESSAGES/SYS_LC_MESSAGES flags=0x80000
+RO time=2026-08-11T12:44:50.620796Z host_pid=155536 uid=1000 comm=locale-check path=/usr/lib/locale/C.UTF-8/LC_MONETARY flags=0x80000
+RO time=2026-08-11T12:44:50.620797Z host_pid=155536 uid=1000 comm=locale-check path=/usr/lib/locale/C.utf8/LC_MONETARY flags=0x80000
+RO time=2026-08-11T12:44:50.620803Z host_pid=155536 uid=1000 comm=locale-check path=/usr/lib/locale/C.UTF-8/LC_COLLATE flags=0x80000
+RO time=2026-08-11T12:44:50.620804Z host_pid=155536 uid=1000 comm=locale-check path=/usr/lib/locale/C.utf8/LC_COLLATE flags=0x80000
+RO time=2026-08-11T12:44:50.620809Z host_pid=155536 uid=1000 comm=locale-check path=/usr/lib/locale/C.UTF-8/LC_TIME flags=0x80000
+RO time=2026-08-11T12:44:50.620810Z host_pid=155536 uid=1000 comm=locale-check path=/usr/lib/locale/C.utf8/LC_TIME flags=0x80000
+RO time=2026-08-11T12:44:50.620815Z host_pid=155536 uid=1000 comm=locale-check path=/usr/lib/locale/C.UTF-8/LC_NUMERIC flags=0x80000
+RO time=2026-08-11T12:44:50.620816Z host_pid=155536 uid=1000 comm=locale-check path=/usr/lib/locale/C.utf8/LC_NUMERIC flags=0x80000
+RO time=2026-08-11T12:44:50.620822Z host_pid=155536 uid=1000 comm=locale-check path=/usr/lib/locale/C.UTF-8/LC_CTYPE flags=0x80000
+RO time=2026-08-11T12:44:50.620823Z host_pid=155536 uid=1000 comm=locale-check path=/usr/lib/locale/C.utf8/LC_CTYPE flags=0x80000
+RO time=2026-08-11T12:44:50.620957Z host_pid=155535 uid=1000 comm=bash path=/root/.bash_profile flags=0x0
+RO time=2026-08-11T12:44:50.620973Z host_pid=155535 uid=1000 comm=bash path=/root/.bash_login flags=0x0
+RO time=2026-08-11T12:44:50.620975Z host_pid=155535 uid=1000 comm=bash path=/root/.profile flags=0x0
+RO time=2026-08-11T12:44:50.621031Z host_pid=155535 uid=1000 comm=bash path=/root/.bashrc flags=0x0
+RW time=2026-08-11T12:44:50.621232Z host_pid=155538 uid=1000 comm=bash path=/dev/null flags=0x241
+EXEC time=2026-08-11T12:44:50.621248Z host_pid=155538 ppid=155535 uid=1000 comm=bash file=/usr/bin/mesg args=mesg n
+RO time=2026-08-11T12:44:50.621400Z host_pid=155538 uid=1000 comm=mesg path=/etc/ld.so.cache flags=0x80000
+RO time=2026-08-11T12:44:50.621408Z host_pid=155538 uid=1000 comm=mesg path=/lib/x86_64-linux-gnu/libc.so.6 flags=0x80000
+RO time=2026-08-11T12:44:50.621507Z host_pid=155538 uid=1000 comm=mesg path= flags=0x80000
+RO time=2026-08-11T12:44:50.621514Z host_pid=155538 uid=1000 comm=mesg path=/usr/share/locale/locale.alias flags=0x80000
+RO time=2026-08-11T12:44:50.621520Z host_pid=155538 uid=1000 comm=mesg path=/usr/lib/locale/C.UTF-8/LC_IDENTIFICATION flags=0x80000
+RO time=2026-08-11T12:44:50.621522Z host_pid=155538 uid=1000 comm=mesg path=/usr/lib/locale/C.utf8/LC_IDENTIFICATION flags=0x80000
+RO time=2026-08-11T12:44:50.621528Z host_pid=155538 uid=1000 comm=mesg path=/usr/lib/x86_64-linux-gnu/gconv/gconv-modules.cache flags=0x80000
+RO time=2026-08-11T12:44:50.621536Z host_pid=155538 uid=1000 comm=mesg path=/usr/lib/locale/C.UTF-8/LC_MEASUREMENT flags=0x80000
+RO time=2026-08-11T12:44:50.621538Z host_pid=155538 uid=1000 comm=mesg path=/usr/lib/locale/C.utf8/LC_MEASUREMENT flags=0x80000
+RO time=2026-08-11T12:44:50.621544Z host_pid=155538 uid=1000 comm=mesg path=/usr/lib/locale/C.UTF-8/LC_TELEPHONE flags=0x80000
+RO time=2026-08-11T12:44:50.621545Z host_pid=155538 uid=1000 comm=mesg path=/usr/lib/locale/C.utf8/LC_TELEPHONE flags=0x80000
+RO time=2026-08-11T12:44:50.621549Z host_pid=155538 uid=1000 comm=mesg path=/usr/lib/locale/C.UTF-8/LC_ADDRESS flags=0x80000
+RO time=2026-08-11T12:44:50.621551Z host_pid=155538 uid=1000 comm=mesg path=/usr/lib/locale/C.utf8/LC_ADDRESS flags=0x80000
+RO time=2026-08-11T12:44:50.621556Z host_pid=155538 uid=1000 comm=mesg path=/usr/lib/locale/C.UTF-8/LC_NAME flags=0x80000
+RO time=2026-08-11T12:44:50.621557Z host_pid=155538 uid=1000 comm=mesg path=/usr/lib/locale/C.utf8/LC_NAME flags=0x80000
+RO time=2026-08-11T12:44:50.621563Z host_pid=155538 uid=1000 comm=mesg path=/usr/lib/locale/C.UTF-8/LC_PAPER flags=0x80000
+RO time=2026-08-11T12:44:50.621564Z host_pid=155538 uid=1000 comm=mesg path=/usr/lib/locale/C.utf8/LC_PAPER flags=0x80000
+RO time=2026-08-11T12:44:50.621577Z host_pid=155538 uid=1000 comm=mesg path=/usr/lib/locale/C.UTF-8/LC_MESSAGES flags=0x80000
+RO time=2026-08-11T12:44:50.621580Z host_pid=155538 uid=1000 comm=mesg path=/usr/lib/locale/C.utf8/LC_MESSAGES flags=0x80000
+RO time=2026-08-11T12:44:50.621584Z host_pid=155538 uid=1000 comm=mesg path=/usr/lib/locale/C.utf8/LC_MESSAGES/SYS_LC_MESSAGES flags=0x80000
+RO time=2026-08-11T12:44:50.621589Z host_pid=155538 uid=1000 comm=mesg path=/usr/lib/locale/C.UTF-8/LC_MONETARY flags=0x80000
+RO time=2026-08-11T12:44:50.621590Z host_pid=155538 uid=1000 comm=mesg path=/usr/lib/locale/C.utf8/LC_MONETARY flags=0x80000
+RO time=2026-08-11T12:44:50.621595Z host_pid=155538 uid=1000 comm=mesg path=/usr/lib/locale/C.UTF-8/LC_COLLATE flags=0x80000
+RO time=2026-08-11T12:44:50.621596Z host_pid=155538 uid=1000 comm=mesg path=/usr/lib/locale/C.utf8/LC_COLLATE flags=0x80000
+RO time=2026-08-11T12:44:50.621601Z host_pid=155538 uid=1000 comm=mesg path=/usr/lib/locale/C.UTF-8/LC_TIME flags=0x80000
+RO time=2026-08-11T12:44:50.621602Z host_pid=155538 uid=1000 comm=mesg path=/usr/lib/locale/C.utf8/LC_TIME flags=0x80000
+RO time=2026-08-11T12:44:50.621607Z host_pid=155538 uid=1000 comm=mesg path=/usr/lib/locale/C.UTF-8/LC_NUMERIC flags=0x80000
+RO time=2026-08-11T12:44:50.621608Z host_pid=155538 uid=1000 comm=mesg path=/usr/lib/locale/C.utf8/LC_NUMERIC flags=0x80000
+RO time=2026-08-11T12:44:50.621614Z host_pid=155538 uid=1000 comm=mesg path=/usr/lib/locale/C.UTF-8/LC_CTYPE flags=0x80000
+RO time=2026-08-11T12:44:50.621616Z host_pid=155538 uid=1000 comm=mesg path=/usr/lib/locale/C.utf8/LC_CTYPE flags=0x80000
+RO time=2026-08-11T12:44:50.621709Z host_pid=155535 uid=1000 comm=bash path=/root/.bashrc flags=0x0
+EXEC time=2026-08-11T12:44:50.621866Z host_pid=155539 ppid=155535 uid=1000 comm=bash file=/usr/bin/cat args=cat package.json
+RO time=2026-08-11T12:44:50.621997Z host_pid=155539 uid=1000 comm=cat path=/etc/ld.so.cache flags=0x80000
+RO time=2026-08-11T12:44:50.622004Z host_pid=155539 uid=1000 comm=cat path=/lib/x86_64-linux-gnu/libc.so.6 flags=0x80000
+RO time=2026-08-11T12:44:50.622101Z host_pid=155539 uid=1000 comm=cat path= flags=0x80000
+RO time=2026-08-11T12:44:50.622108Z host_pid=155539 uid=1000 comm=cat path=/usr/share/locale/locale.alias flags=0x80000
+RO time=2026-08-11T12:44:50.622112Z host_pid=155539 uid=1000 comm=cat path=/usr/lib/locale/C.UTF-8/LC_IDENTIFICATION flags=0x80000
+RO time=2026-08-11T12:44:50.622113Z host_pid=155539 uid=1000 comm=cat path=/usr/lib/locale/C.utf8/LC_IDENTIFICATION flags=0x80000
+RO time=2026-08-11T12:44:50.622120Z host_pid=155539 uid=1000 comm=cat path=/usr/lib/x86_64-linux-gnu/gconv/gconv-modules.cache flags=0x80000
+RO time=2026-08-11T12:44:50.622128Z host_pid=155539 uid=1000 comm=cat path=/usr/lib/locale/C.UTF-8/LC_MEASUREMENT flags=0x80000
+RO time=2026-08-11T12:44:50.622129Z host_pid=155539 uid=1000 comm=cat path=/usr/lib/locale/C.utf8/LC_MEASUREMENT flags=0x80000
+RO time=2026-08-11T12:44:50.622134Z host_pid=155539 uid=1000 comm=cat path=/usr/lib/locale/C.UTF-8/LC_TELEPHONE flags=0x80000
+RO time=2026-08-11T12:44:50.622135Z host_pid=155539 uid=1000 comm=cat path=/usr/lib/locale/C.utf8/LC_TELEPHONE flags=0x80000
+RO time=2026-08-11T12:44:50.622140Z host_pid=155539 uid=1000 comm=cat path=/usr/lib/locale/C.UTF-8/LC_ADDRESS flags=0x80000
+RO time=2026-08-11T12:44:50.622141Z host_pid=155539 uid=1000 comm=cat path=/usr/lib/locale/C.utf8/LC_ADDRESS flags=0x80000
+RO time=2026-08-11T12:44:50.622146Z host_pid=155539 uid=1000 comm=cat path=/usr/lib/locale/C.UTF-8/LC_NAME flags=0x80000
+RO time=2026-08-11T12:44:50.622147Z host_pid=155539 uid=1000 comm=cat path=/usr/lib/locale/C.utf8/LC_NAME flags=0x80000
+RO time=2026-08-11T12:44:50.622152Z host_pid=155539 uid=1000 comm=cat path=/usr/lib/locale/C.UTF-8/LC_PAPER flags=0x80000
+RO time=2026-08-11T12:44:50.622153Z host_pid=155539 uid=1000 comm=cat path=/usr/lib/locale/C.utf8/LC_PAPER flags=0x80000
+RO time=2026-08-11T12:44:50.622164Z host_pid=155539 uid=1000 comm=cat path=/usr/lib/locale/C.UTF-8/LC_MESSAGES flags=0x80000
+RO time=2026-08-11T12:44:50.622166Z host_pid=155539 uid=1000 comm=cat path=/usr/lib/locale/C.utf8/LC_MESSAGES flags=0x80000
+RO time=2026-08-11T12:44:50.622169Z host_pid=155539 uid=1000 comm=cat path=/usr/lib/locale/C.utf8/LC_MESSAGES/SYS_LC_MESSAGES flags=0x80000
+RO time=2026-08-11T12:44:50.622174Z host_pid=155539 uid=1000 comm=cat path=/usr/lib/locale/C.UTF-8/LC_MONETARY flags=0x80000
+RO time=2026-08-11T12:44:50.622175Z host_pid=155539 uid=1000 comm=cat path=/usr/lib/locale/C.utf8/LC_MONETARY flags=0x80000
+RO time=2026-08-11T12:44:50.622181Z host_pid=155539 uid=1000 comm=cat path=/usr/lib/locale/C.UTF-8/LC_COLLATE flags=0x80000
+RO time=2026-08-11T12:44:50.622182Z host_pid=155539 uid=1000 comm=cat path=/usr/lib/locale/C.utf8/LC_COLLATE flags=0x80000
+RO time=2026-08-11T12:44:50.622186Z host_pid=155539 uid=1000 comm=cat path=/usr/lib/locale/C.UTF-8/LC_TIME flags=0x80000
+RO time=2026-08-11T12:44:50.622187Z host_pid=155539 uid=1000 comm=cat path=/usr/lib/locale/C.utf8/LC_TIME flags=0x80000
+RO time=2026-08-11T12:44:50.622192Z host_pid=155539 uid=1000 comm=cat path=/usr/lib/locale/C.UTF-8/LC_NUMERIC flags=0x80000
+RO time=2026-08-11T12:44:50.622193Z host_pid=155539 uid=1000 comm=cat path=/usr/lib/locale/C.utf8/LC_NUMERIC flags=0x80000
+RO time=2026-08-11T12:44:50.622198Z host_pid=155539 uid=1000 comm=cat path=/usr/lib/locale/C.UTF-8/LC_CTYPE flags=0x80000
+RO time=2026-08-11T12:44:50.622199Z host_pid=155539 uid=1000 comm=cat path=/usr/lib/locale/C.utf8/LC_CTYPE flags=0x80000
+RO time=2026-08-11T12:44:50.622210Z host_pid=155539 uid=1000 comm=cat path=package.json flags=0x0
+EXEC time=2026-08-11T12:44:50.626503Z host_pid=155540 ppid=132510 uid=1000 comm=tokio-runtime-w file=/tmp/.tmpsbucyo/lsb_release args=lsb_release -a
+EXEC time=2026-08-11T12:44:50.626518Z host_pid=155540 ppid=132510 uid=1000 comm=tokio-runtime-w file=/usr/local/sbin/lsb_release args=lsb_release -a
+EXEC time=2026-08-11T12:44:50.626529Z host_pid=155540 ppid=132510 uid=1000 comm=tokio-runtime-w file=/usr/local/bin/lsb_release args=lsb_release -a
+EXEC time=2026-08-11T12:44:50.626542Z host_pid=155540 ppid=132510 uid=1000 comm=tokio-runtime-w file=/usr/sbin/lsb_release args=lsb_release -a
+EXEC time=2026-08-11T12:44:50.626554Z host_pid=155540 ppid=132510 uid=1000 comm=tokio-runtime-w file=/usr/bin/lsb_release args=lsb_release -a
+EXEC time=2026-08-11T12:44:50.626566Z host_pid=155540 ppid=132510 uid=1000 comm=tokio-runtime-w file=/sbin/lsb_release args=lsb_release -a
+EXEC time=2026-08-11T12:44:50.626581Z host_pid=155540 ppid=132510 uid=1000 comm=tokio-runtime-w file=/bin/lsb_release args=lsb_release -a
+EXEC time=2026-08-11T12:44:50.626592Z host_pid=155540 ppid=132510 uid=1000 comm=tokio-runtime-w file=/usr/local/share/npm-global/bin/lsb_release args=lsb_release -a
+EXEC time=2026-08-11T12:44:50.626713Z host_pid=155541 ppid=132510 uid=1000 comm=tokio-runtime-w file=/tmp/.tmpsbucyo/getconf args=getconf LONG_BIT
+EXEC time=2026-08-11T12:44:50.626746Z host_pid=155541 ppid=132510 uid=1000 comm=tokio-runtime-w file=/usr/local/sbin/getconf args=getconf LONG_BIT
+EXEC time=2026-08-11T12:44:50.626766Z host_pid=155541 ppid=132510 uid=1000 comm=tokio-runtime-w file=/usr/local/bin/getconf args=getconf LONG_BIT
+EXEC time=2026-08-11T12:44:50.626786Z host_pid=155541 ppid=132510 uid=1000 comm=tokio-runtime-w file=/usr/sbin/getconf args=getconf LONG_BIT
+EXEC time=2026-08-11T12:44:50.626809Z host_pid=155541 ppid=132510 uid=1000 comm=tokio-runtime-w file=/usr/bin/getconf args=getconf LONG_BIT
+RO time=2026-08-11T12:44:50.627059Z host_pid=155541 uid=1000 comm=getconf path=/etc/ld.so.cache flags=0x80000
+RO time=2026-08-11T12:44:50.627081Z host_pid=155541 uid=1000 comm=getconf path=/lib/x86_64-linux-gnu/libc.so.6 flags=0x80000
+EXEC time=2026-08-11T12:44:50.627434Z host_pid=155542 ppid=132510 uid=1000 comm=tokio-runtime-w file=/tmp/.tmpsbucyo/uname args=uname -m
+EXEC time=2026-08-11T12:44:50.627456Z host_pid=155542 ppid=132510 uid=1000 comm=tokio-runtime-w file=/usr/local/sbin/uname args=uname -m
+EXEC time=2026-08-11T12:44:50.627468Z host_pid=155542 ppid=132510 uid=1000 comm=tokio-runtime-w file=/usr/local/bin/uname args=uname -m
+EXEC time=2026-08-11T12:44:50.627482Z host_pid=155542 ppid=132510 uid=1000 comm=tokio-runtime-w file=/usr/sbin/uname args=uname -m
+EXEC time=2026-08-11T12:44:50.627494Z host_pid=155542 ppid=132510 uid=1000 comm=tokio-runtime-w file=/usr/bin/uname args=uname -m
+RO time=2026-08-11T12:44:50.627659Z host_pid=155542 uid=1000 comm=uname path=/etc/ld.so.cache flags=0x80000
+RO time=2026-08-11T12:44:50.627670Z host_pid=155542 uid=1000 comm=uname path=/lib/x86_64-linux-gnu/libc.so.6 flags=0x80000
+EXEC time=2026-08-11T12:44:50.630624Z host_pid=155543 ppid=132510 uid=1000 comm=tokio-runtime-w file=/tmp/.tmpsbucyo/lsb_release args=lsb_release -a
+EXEC time=2026-08-11T12:44:50.630638Z host_pid=155543 ppid=132510 uid=1000 comm=tokio-runtime-w file=/usr/local/sbin/lsb_release args=lsb_release -a
+EXEC time=2026-08-11T12:44:50.630648Z host_pid=155543 ppid=132510 uid=1000 comm=tokio-runtime-w file=/usr/local/bin/lsb_release args=lsb_release -a
+EXEC time=2026-08-11T12:44:50.630657Z host_pid=155543 ppid=132510 uid=1000 comm=tokio-runtime-w file=/usr/sbin/lsb_release args=lsb_release -a
+EXEC time=2026-08-11T12:44:50.630665Z host_pid=155543 ppid=132510 uid=1000 comm=tokio-runtime-w file=/usr/bin/lsb_release args=lsb_release -a
+EXEC time=2026-08-11T12:44:50.630673Z host_pid=155543 ppid=132510 uid=1000 comm=tokio-runtime-w file=/sbin/lsb_release args=lsb_release -a
+EXEC time=2026-08-11T12:44:50.630682Z host_pid=155543 ppid=132510 uid=1000 comm=tokio-runtime-w file=/bin/lsb_release args=lsb_release -a
+EXEC time=2026-08-11T12:44:50.630692Z host_pid=155543 ppid=132510 uid=1000 comm=tokio-runtime-w file=/usr/local/share/npm-global/bin/lsb_release args=lsb_release -a
+EXEC time=2026-08-11T12:44:50.630764Z host_pid=155544 ppid=132510 uid=1000 comm=tokio-runtime-w file=/tmp/.tmpsbucyo/getconf args=getconf LONG_BIT
+EXEC time=2026-08-11T12:44:50.630777Z host_pid=155544 ppid=132510 uid=1000 comm=tokio-runtime-w file=/usr/local/sbin/getconf args=getconf LONG_BIT
+EXEC time=2026-08-11T12:44:50.630788Z host_pid=155544 ppid=132510 uid=1000 comm=tokio-runtime-w file=/usr/local/bin/getconf args=getconf LONG_BIT
+EXEC time=2026-08-11T12:44:50.630799Z host_pid=155544 ppid=132510 uid=1000 comm=tokio-runtime-w file=/usr/sbin/getconf args=getconf LONG_BIT
+EXEC time=2026-08-11T12:44:50.630810Z host_pid=155544 ppid=132510 uid=1000 comm=tokio-runtime-w file=/usr/bin/getconf args=getconf LONG_BIT
+RO time=2026-08-11T12:44:50.630901Z host_pid=155544 uid=1000 comm=getconf path=/etc/ld.so.cache flags=0x80000
+RO time=2026-08-11T12:44:50.630909Z host_pid=155544 uid=1000 comm=getconf path=/lib/x86_64-linux-gnu/libc.so.6 flags=0x80000
+EXEC time=2026-08-11T12:44:50.631078Z host_pid=155545 ppid=132510 uid=1000 comm=tokio-runtime-w file=/tmp/.tmpsbucyo/uname args=uname -m
+EXEC time=2026-08-11T12:44:50.631095Z host_pid=155545 ppid=132510 uid=1000 comm=tokio-runtime-w file=/usr/local/sbin/uname args=uname -m
+EXEC time=2026-08-11T12:44:50.631106Z host_pid=155545 ppid=132510 uid=1000 comm=tokio-runtime-w file=/usr/local/bin/uname args=uname -m
+EXEC time=2026-08-11T12:44:50.631116Z host_pid=155545 ppid=132510 uid=1000 comm=tokio-runtime-w file=/usr/sbin/uname args=uname -m
+EXEC time=2026-08-11T12:44:50.631124Z host_pid=155545 ppid=132510 uid=1000 comm=tokio-runtime-w file=/usr/bin/uname args=uname -m
+RO time=2026-08-11T12:44:50.631217Z host_pid=155545 uid=1000 comm=uname path=/etc/ld.so.cache flags=0x80000
+RO time=2026-08-11T12:44:50.631225Z host_pid=155545 uid=1000 comm=uname path=/lib/x86_64-linux-gnu/libc.so.6 flags=0x80000
+CONNECT time=2026-08-11T12:44:50.632919150Z timestamp_ns=3251140364277 host_pid=132495 tid=155407 uid=1000 comm=tokio-runtime-w protocol=udp dst=192.168.200.1:53 hostnames=
+CONNECT time=2026-08-11T12:44:50.633001345Z timestamp_ns=3251140439048 host_pid=132495 tid=155407 uid=1000 comm=tokio-runtime-w protocol=udp dst=192.168.200.1:53 hostnames=
+CONNECT time=2026-08-11T12:44:50.725683754Z timestamp_ns=3251233121497 host_pid=132495 tid=155407 uid=1000 comm=tokio-runtime-w protocol=udp dst=104.18.32.47:65535 hostnames=chatgpt.com
+CONNECT time=2026-08-11T12:44:50.725703120Z timestamp_ns=3251233140853 host_pid=132495 tid=155407 uid=1000 comm=tokio-runtime-w protocol=udp dst=172.64.155.209:65535 hostnames=chatgpt.com
+CONNECT time=2026-08-11T12:44:50.725714412Z timestamp_ns=3251233152115 host_pid=132495 tid=155407 uid=1000 comm=tokio-runtime-w protocol=udp dst=2606:4700:4408::ac40:9bd1:65535 hostnames=chatgpt.com
+CONNECT time=2026-08-11T12:44:50.725728638Z timestamp_ns=3251233166321 host_pid=132495 tid=155407 uid=1000 comm=tokio-runtime-w protocol=udp dst=2a06:98c1:3101::6812:202f:65535 hostnames=chatgpt.com
+CONNECT time=2026-08-11T12:44:50.725812116Z timestamp_ns=3251233249919 host_pid=132495 tid=132516 uid=1000 comm=tokio-runtime-w protocol=tcp dst=172.64.155.209:443 hostnames=chatgpt.com
+EXEC time=2026-08-11T12:44:55.651835Z host_pid=155630 ppid=132497 uid=1000 comm=tokio-runtime-w file=/bin/bash args=/bin/bash -lc set +m; source /root/.bashrc && (node --check public/app.js && node --check server.js && curl -sS -o /dev/null -w '%{http_code}\n' http://127.0.0.1:3000/graph)
+RO time=2026-08-11T12:44:55.652449Z host_pid=155630 uid=1000 comm=bash path=/etc/ld.so.cache flags=0x80000
+RO time=2026-08-11T12:44:55.652465Z host_pid=155630 uid=1000 comm=bash path=/lib/x86_64-linux-gnu/libtinfo.so.6 flags=0x80000
+RO time=2026-08-11T12:44:55.652500Z host_pid=155630 uid=1000 comm=bash path=/lib/x86_64-linux-gnu/libc.so.6 flags=0x80000
+RW time=2026-08-11T12:44:55.652822Z host_pid=155630 uid=1000 comm=bash path= flags=0x802
+RO time=2026-08-11T12:44:55.652862Z host_pid=155630 uid=1000 comm=bash path= flags=0x80000
+RO time=2026-08-11T12:44:55.652875Z host_pid=155630 uid=1000 comm=bash path=/usr/share/locale/locale.alias flags=0x80000
+RO time=2026-08-11T12:44:55.652885Z host_pid=155630 uid=1000 comm=bash path=/usr/lib/locale/C.UTF-8/LC_IDENTIFICATION flags=0x80000
+RO time=2026-08-11T12:44:55.652887Z host_pid=155630 uid=1000 comm=bash path=/usr/lib/locale/C.utf8/LC_IDENTIFICATION flags=0x80000
+RO time=2026-08-11T12:44:55.652900Z host_pid=155630 uid=1000 comm=bash path=/usr/lib/x86_64-linux-gnu/gconv/gconv-modules.cache flags=0x80000
+RO time=2026-08-11T12:44:55.652915Z host_pid=155630 uid=1000 comm=bash path=/usr/lib/locale/C.UTF-8/LC_MEASUREMENT flags=0x80000
+RO time=2026-08-11T12:44:55.652917Z host_pid=155630 uid=1000 comm=bash path=/usr/lib/locale/C.utf8/LC_MEASUREMENT flags=0x80000
+RO time=2026-08-11T12:44:55.652928Z host_pid=155630 uid=1000 comm=bash path=/usr/lib/locale/C.UTF-8/LC_TELEPHONE flags=0x80000
+RO time=2026-08-11T12:44:55.652930Z host_pid=155630 uid=1000 comm=bash path=/usr/lib/locale/C.utf8/LC_TELEPHONE flags=0x80000
+RO time=2026-08-11T12:44:55.652939Z host_pid=155630 uid=1000 comm=bash path=/usr/lib/locale/C.UTF-8/LC_ADDRESS flags=0x80000
+RO time=2026-08-11T12:44:55.652940Z host_pid=155630 uid=1000 comm=bash path=/usr/lib/locale/C.utf8/LC_ADDRESS flags=0x80000
+RO time=2026-08-11T12:44:55.652948Z host_pid=155630 uid=1000 comm=bash path=/usr/lib/locale/C.UTF-8/LC_NAME flags=0x80000
+RO time=2026-08-11T12:44:55.652949Z host_pid=155630 uid=1000 comm=bash path=/usr/lib/locale/C.utf8/LC_NAME flags=0x80000
+RO time=2026-08-11T12:44:55.652956Z host_pid=155630 uid=1000 comm=bash path=/usr/lib/locale/C.UTF-8/LC_PAPER flags=0x80000
+RO time=2026-08-11T12:44:55.652957Z host_pid=155630 uid=1000 comm=bash path=/usr/lib/locale/C.utf8/LC_PAPER flags=0x80000
+RO time=2026-08-11T12:44:55.652966Z host_pid=155630 uid=1000 comm=bash path=/usr/lib/locale/C.UTF-8/LC_MESSAGES flags=0x80000
+RO time=2026-08-11T12:44:55.652967Z host_pid=155630 uid=1000 comm=bash path=/usr/lib/locale/C.utf8/LC_MESSAGES flags=0x80000
+RO time=2026-08-11T12:44:55.652973Z host_pid=155630 uid=1000 comm=bash path=/usr/lib/locale/C.utf8/LC_MESSAGES/SYS_LC_MESSAGES flags=0x80000
+RO time=2026-08-11T12:44:55.652979Z host_pid=155630 uid=1000 comm=bash path=/usr/lib/locale/C.UTF-8/LC_MONETARY flags=0x80000
+RO time=2026-08-11T12:44:55.652980Z host_pid=155630 uid=1000 comm=bash path=/usr/lib/locale/C.utf8/LC_MONETARY flags=0x80000
+RO time=2026-08-11T12:44:55.652987Z host_pid=155630 uid=1000 comm=bash path=/usr/lib/locale/C.UTF-8/LC_COLLATE flags=0x80000
+RO time=2026-08-11T12:44:55.652988Z host_pid=155630 uid=1000 comm=bash path=/usr/lib/locale/C.utf8/LC_COLLATE flags=0x80000
+RO time=2026-08-11T12:44:55.652994Z host_pid=155630 uid=1000 comm=bash path=/usr/lib/locale/C.UTF-8/LC_TIME flags=0x80000
+RO time=2026-08-11T12:44:55.652995Z host_pid=155630 uid=1000 comm=bash path=/usr/lib/locale/C.utf8/LC_TIME flags=0x80000
+RO time=2026-08-11T12:44:55.653001Z host_pid=155630 uid=1000 comm=bash path=/usr/lib/locale/C.UTF-8/LC_NUMERIC flags=0x80000
+RO time=2026-08-11T12:44:55.653002Z host_pid=155630 uid=1000 comm=bash path=/usr/lib/locale/C.utf8/LC_NUMERIC flags=0x80000
+RO time=2026-08-11T12:44:55.653008Z host_pid=155630 uid=1000 comm=bash path=/usr/lib/locale/C.UTF-8/LC_CTYPE flags=0x80000
+RO time=2026-08-11T12:44:55.653009Z host_pid=155630 uid=1000 comm=bash path=/usr/lib/locale/C.utf8/LC_CTYPE flags=0x80000
+RO time=2026-08-11T12:44:55.653118Z host_pid=155630 uid=1000 comm=bash path=/etc/nsswitch.conf flags=0x80000
+RO time=2026-08-11T12:44:55.653140Z host_pid=155630 uid=1000 comm=bash path=/etc/passwd flags=0x80000
+RO time=2026-08-11T12:44:55.653189Z host_pid=155630 uid=1000 comm=bash path=/etc/profile flags=0x0
+RO time=2026-08-11T12:44:55.653278Z host_pid=155630 uid=1000 comm=bash path=/etc/profile.d/ flags=0x90800
+RO time=2026-08-11T12:44:55.653316Z host_pid=155630 uid=1000 comm=bash path=/etc/profile.d/01-locale-fix.sh flags=0x0
+EXEC time=2026-08-11T12:44:55.653554Z host_pid=155631 ppid=155630 uid=1000 comm=bash file=/usr/bin/locale-check args=/usr/bin/locale-check C.UTF-8
+RO time=2026-08-11T12:44:55.653855Z host_pid=155631 uid=1000 comm=locale-check path=/etc/ld.so.cache flags=0x80000
+RO time=2026-08-11T12:44:55.653871Z host_pid=155631 uid=1000 comm=locale-check path=/lib/x86_64-linux-gnu/libc.so.6 flags=0x80000
+RO time=2026-08-11T12:44:55.654039Z host_pid=155631 uid=1000 comm=locale-check path= flags=0x80000
+RO time=2026-08-11T12:44:55.654052Z host_pid=155631 uid=1000 comm=locale-check path=/usr/share/locale/locale.alias flags=0x80000
+RO time=2026-08-11T12:44:55.654060Z host_pid=155631 uid=1000 comm=locale-check path=/usr/lib/locale/C.UTF-8/LC_IDENTIFICATION flags=0x80000
+RO time=2026-08-11T12:44:55.654062Z host_pid=155631 uid=1000 comm=locale-check path=/usr/lib/locale/C.utf8/LC_IDENTIFICATION flags=0x80000
+RO time=2026-08-11T12:44:55.654074Z host_pid=155631 uid=1000 comm=locale-check path=/usr/lib/x86_64-linux-gnu/gconv/gconv-modules.cache flags=0x80000
+RO time=2026-08-11T12:44:55.654087Z host_pid=155631 uid=1000 comm=locale-check path=/usr/lib/locale/C.UTF-8/LC_MEASUREMENT flags=0x80000
+RO time=2026-08-11T12:44:55.654091Z host_pid=155631 uid=1000 comm=locale-check path=/usr/lib/locale/C.utf8/LC_MEASUREMENT flags=0x80000
+RO time=2026-08-11T12:44:55.654099Z host_pid=155631 uid=1000 comm=locale-check path=/usr/lib/locale/C.UTF-8/LC_TELEPHONE flags=0x80000
+RO time=2026-08-11T12:44:55.654103Z host_pid=155631 uid=1000 comm=locale-check path=/usr/lib/locale/C.utf8/LC_TELEPHONE flags=0x80000
+RO time=2026-08-11T12:44:55.654110Z host_pid=155631 uid=1000 comm=locale-check path=/usr/lib/locale/C.UTF-8/LC_ADDRESS flags=0x80000
+RO time=2026-08-11T12:44:55.654112Z host_pid=155631 uid=1000 comm=locale-check path=/usr/lib/locale/C.utf8/LC_ADDRESS flags=0x80000
+RO time=2026-08-11T12:44:55.654122Z host_pid=155631 uid=1000 comm=locale-check path=/usr/lib/locale/C.UTF-8/LC_NAME flags=0x80000
+RO time=2026-08-11T12:44:55.654125Z host_pid=155631 uid=1000 comm=locale-check path=/usr/lib/locale/C.utf8/LC_NAME flags=0x80000
+RO time=2026-08-11T12:44:55.654133Z host_pid=155631 uid=1000 comm=locale-check path=/usr/lib/locale/C.UTF-8/LC_PAPER flags=0x80000
+RO time=2026-08-11T12:44:55.654136Z host_pid=155631 uid=1000 comm=locale-check path=/usr/lib/locale/C.utf8/LC_PAPER flags=0x80000
+RO time=2026-08-11T12:44:55.654149Z host_pid=155631 uid=1000 comm=locale-check path=/usr/lib/locale/C.UTF-8/LC_MESSAGES flags=0x80000
+RO time=2026-08-11T12:44:55.654152Z host_pid=155631 uid=1000 comm=locale-check path=/usr/lib/locale/C.utf8/LC_MESSAGES flags=0x80000
+RO time=2026-08-11T12:44:55.654158Z host_pid=155631 uid=1000 comm=locale-check path=/usr/lib/locale/C.utf8/LC_MESSAGES/SYS_LC_MESSAGES flags=0x80000
+RO time=2026-08-11T12:44:55.654167Z host_pid=155631 uid=1000 comm=locale-check path=/usr/lib/locale/C.UTF-8/LC_MONETARY flags=0x80000
+RO time=2026-08-11T12:44:55.654170Z host_pid=155631 uid=1000 comm=locale-check path=/usr/lib/locale/C.utf8/LC_MONETARY flags=0x80000
+RO time=2026-08-11T12:44:55.654180Z host_pid=155631 uid=1000 comm=locale-check path=/usr/lib/locale/C.UTF-8/LC_COLLATE flags=0x80000
+RO time=2026-08-11T12:44:55.654183Z host_pid=155631 uid=1000 comm=locale-check path=/usr/lib/locale/C.utf8/LC_COLLATE flags=0x80000
+RO time=2026-08-11T12:44:55.654192Z host_pid=155631 uid=1000 comm=locale-check path=/usr/lib/locale/C.UTF-8/LC_TIME flags=0x80000
+RO time=2026-08-11T12:44:55.654195Z host_pid=155631 uid=1000 comm=locale-check path=/usr/lib/locale/C.utf8/LC_TIME flags=0x80000
+RO time=2026-08-11T12:44:55.654204Z host_pid=155631 uid=1000 comm=locale-check path=/usr/lib/locale/C.UTF-8/LC_NUMERIC flags=0x80000
+RO time=2026-08-11T12:44:55.654207Z host_pid=155631 uid=1000 comm=locale-check path=/usr/lib/locale/C.utf8/LC_NUMERIC flags=0x80000
+RO time=2026-08-11T12:44:55.654216Z host_pid=155631 uid=1000 comm=locale-check path=/usr/lib/locale/C.UTF-8/LC_CTYPE flags=0x80000
+RO time=2026-08-11T12:44:55.654218Z host_pid=155631 uid=1000 comm=locale-check path=/usr/lib/locale/C.utf8/LC_CTYPE flags=0x80000
+RO time=2026-08-11T12:44:55.654341Z host_pid=155630 uid=1000 comm=bash path=/root/.bash_profile flags=0x0
+RO time=2026-08-11T12:44:55.654346Z host_pid=155630 uid=1000 comm=bash path=/root/.bash_login flags=0x0
+RO time=2026-08-11T12:44:55.654347Z host_pid=155630 uid=1000 comm=bash path=/root/.profile flags=0x0
+RO time=2026-08-11T12:44:55.654369Z host_pid=155630 uid=1000 comm=bash path=/root/.bashrc flags=0x0
+RW time=2026-08-11T12:44:55.654523Z host_pid=155632 uid=1000 comm=bash path=/dev/null flags=0x241
+EXEC time=2026-08-11T12:44:55.654542Z host_pid=155632 ppid=155630 uid=1000 comm=bash file=/usr/bin/mesg args=mesg n
+RO time=2026-08-11T12:44:55.654729Z host_pid=155632 uid=1000 comm=mesg path=/etc/ld.so.cache flags=0x80000
+RO time=2026-08-11T12:44:55.654739Z host_pid=155632 uid=1000 comm=mesg path=/lib/x86_64-linux-gnu/libc.so.6 flags=0x80000
+RO time=2026-08-11T12:44:55.654852Z host_pid=155632 uid=1000 comm=mesg path= flags=0x80000
+RO time=2026-08-11T12:44:55.654861Z host_pid=155632 uid=1000 comm=mesg path=/usr/share/locale/locale.alias flags=0x80000
+RO time=2026-08-11T12:44:55.654867Z host_pid=155632 uid=1000 comm=mesg path=/usr/lib/locale/C.UTF-8/LC_IDENTIFICATION flags=0x80000
+RO time=2026-08-11T12:44:55.654869Z host_pid=155632 uid=1000 comm=mesg path=/usr/lib/locale/C.utf8/LC_IDENTIFICATION flags=0x80000
+RO time=2026-08-11T12:44:55.654877Z host_pid=155632 uid=1000 comm=mesg path=/usr/lib/x86_64-linux-gnu/gconv/gconv-modules.cache flags=0x80000
+RO time=2026-08-11T12:44:55.654885Z host_pid=155632 uid=1000 comm=mesg path=/usr/lib/locale/C.UTF-8/LC_MEASUREMENT flags=0x80000
+RO time=2026-08-11T12:44:55.654887Z host_pid=155632 uid=1000 comm=mesg path=/usr/lib/locale/C.utf8/LC_MEASUREMENT flags=0x80000
+RO time=2026-08-11T12:44:55.654893Z host_pid=155632 uid=1000 comm=mesg path=/usr/lib/locale/C.UTF-8/LC_TELEPHONE flags=0x80000
+RO time=2026-08-11T12:44:55.654895Z host_pid=155632 uid=1000 comm=mesg path=/usr/lib/locale/C.utf8/LC_TELEPHONE flags=0x80000
+RO time=2026-08-11T12:44:55.654900Z host_pid=155632 uid=1000 comm=mesg path=/usr/lib/locale/C.UTF-8/LC_ADDRESS flags=0x80000
+RO time=2026-08-11T12:44:55.654902Z host_pid=155632 uid=1000 comm=mesg path=/usr/lib/locale/C.utf8/LC_ADDRESS flags=0x80000
+RO time=2026-08-11T12:44:55.654908Z host_pid=155632 uid=1000 comm=mesg path=/usr/lib/locale/C.UTF-8/LC_NAME flags=0x80000
+RO time=2026-08-11T12:44:55.654909Z host_pid=155632 uid=1000 comm=mesg path=/usr/lib/locale/C.utf8/LC_NAME flags=0x80000
+RO time=2026-08-11T12:44:55.654914Z host_pid=155632 uid=1000 comm=mesg path=/usr/lib/locale/C.UTF-8/LC_PAPER flags=0x80000
+RO time=2026-08-11T12:44:55.654915Z host_pid=155632 uid=1000 comm=mesg path=/usr/lib/locale/C.utf8/LC_PAPER flags=0x80000
+RO time=2026-08-11T12:44:55.654923Z host_pid=155632 uid=1000 comm=mesg path=/usr/lib/locale/C.UTF-8/LC_MESSAGES flags=0x80000
+RO time=2026-08-11T12:44:55.654924Z host_pid=155632 uid=1000 comm=mesg path=/usr/lib/locale/C.utf8/LC_MESSAGES flags=0x80000
+RO time=2026-08-11T12:44:55.654929Z host_pid=155632 uid=1000 comm=mesg path=/usr/lib/locale/C.utf8/LC_MESSAGES/SYS_LC_MESSAGES flags=0x80000
+RO time=2026-08-11T12:44:55.654934Z host_pid=155632 uid=1000 comm=mesg path=/usr/lib/locale/C.UTF-8/LC_MONETARY flags=0x80000
+RO time=2026-08-11T12:44:55.654936Z host_pid=155632 uid=1000 comm=mesg path=/usr/lib/locale/C.utf8/LC_MONETARY flags=0x80000
+RO time=2026-08-11T12:44:55.654942Z host_pid=155632 uid=1000 comm=mesg path=/usr/lib/locale/C.UTF-8/LC_COLLATE flags=0x80000
+RO time=2026-08-11T12:44:55.654943Z host_pid=155632 uid=1000 comm=mesg path=/usr/lib/locale/C.utf8/LC_COLLATE flags=0x80000
+RO time=2026-08-11T12:44:55.654948Z host_pid=155632 uid=1000 comm=mesg path=/usr/lib/locale/C.UTF-8/LC_TIME flags=0x80000
+RO time=2026-08-11T12:44:55.654949Z host_pid=155632 uid=1000 comm=mesg path=/usr/lib/locale/C.utf8/LC_TIME flags=0x80000
+RO time=2026-08-11T12:44:55.654954Z host_pid=155632 uid=1000 comm=mesg path=/usr/lib/locale/C.UTF-8/LC_NUMERIC flags=0x80000
+RO time=2026-08-11T12:44:55.654955Z host_pid=155632 uid=1000 comm=mesg path=/usr/lib/locale/C.utf8/LC_NUMERIC flags=0x80000
+RO time=2026-08-11T12:44:55.654961Z host_pid=155632 uid=1000 comm=mesg path=/usr/lib/locale/C.UTF-8/LC_CTYPE flags=0x80000
+RO time=2026-08-11T12:44:55.654962Z host_pid=155632 uid=1000 comm=mesg path=/usr/lib/locale/C.utf8/LC_CTYPE flags=0x80000
+RO time=2026-08-11T12:44:55.655058Z host_pid=155630 uid=1000 comm=bash path=/root/.bashrc flags=0x0
+EXEC time=2026-08-11T12:44:55.655326Z host_pid=155634 ppid=155633 uid=1000 comm=bash file=/usr/bin/node args=node --check public/app.js
+RO time=2026-08-11T12:44:55.655616Z host_pid=155634 uid=1000 comm=node path=/etc/ld.so.cache flags=0x80000
+RO time=2026-08-11T12:44:55.655632Z host_pid=155634 uid=1000 comm=node path=/lib/x86_64-linux-gnu/libdl.so.2 flags=0x80000
+RO time=2026-08-11T12:44:55.655669Z host_pid=155634 uid=1000 comm=node path=/lib/x86_64-linux-gnu/libstdc++.so.6 flags=0x80000
+RO time=2026-08-11T12:44:55.655708Z host_pid=155634 uid=1000 comm=node path=/lib/x86_64-linux-gnu/libm.so.6 flags=0x80000
+RO time=2026-08-11T12:44:55.655747Z host_pid=155634 uid=1000 comm=node path=/lib/x86_64-linux-gnu/libgcc_s.so.1 flags=0x80000
+RO time=2026-08-11T12:44:55.655773Z host_pid=155634 uid=1000 comm=node path=/lib/x86_64-linux-gnu/libpthread.so.0 flags=0x80000
+RO time=2026-08-11T12:44:55.655800Z host_pid=155634 uid=1000 comm=node path=/lib/x86_64-linux-gnu/libc.so.6 flags=0x80000
+RO time=2026-08-11T12:44:55.658343Z host_pid=155634 uid=1000 comm=node path=/etc/ssl/openssl.cnf flags=0x0
+RO time=2026-08-11T12:44:55.659504Z host_pid=155634 uid=1000 comm=MainThread path=/proc/version_signature flags=0x80000
+RO time=2026-08-11T12:44:55.660347Z host_pid=155634 uid=1000 comm=MainThread path=/proc/self/maps flags=0x80000
+RO time=2026-08-11T12:44:55.660420Z host_pid=155634 uid=1000 comm=MainThread path=/proc/self/cgroup flags=0x80000
+RO time=2026-08-11T12:44:55.660437Z host_pid=155634 uid=1000 comm=MainThread path=/sys/fs/cgroup//memory.max flags=0x80000
+RO time=2026-08-11T12:44:55.660463Z host_pid=155634 uid=1000 comm=MainThread path=/sys/fs/cgroup//memory.high flags=0x80000
+RO time=2026-08-11T12:44:55.660471Z host_pid=155634 uid=1000 comm=MainThread path=/proc/meminfo flags=0x80000
+RO time=2026-08-11T12:44:55.660716Z host_pid=155634 uid=1000 comm=MainThread path=/proc/self/maps flags=0x0
+RO time=2026-08-11T12:44:55.660740Z host_pid=155634 uid=1000 comm=MainThread path=/usr/bin/node flags=0x0
+RO time=2026-08-11T12:44:55.671234Z host_pid=155634 uid=1000 comm=MainThread path=/workspace/visualization/public/app.js flags=0x80000
+RO time=2026-08-11T12:44:55.671482Z host_pid=155634 uid=1000 comm=MainThread path=/workspace/visualization/public/package.json flags=0x80000
+RO time=2026-08-11T12:44:55.671491Z host_pid=155634 uid=1000 comm=MainThread path=/workspace/visualization/package.json flags=0x80000
+EXEC time=2026-08-11T12:44:55.673563Z host_pid=155643 ppid=155633 uid=1000 comm=bash file=/usr/bin/node args=node --check server.js
+RO time=2026-08-11T12:44:55.673828Z host_pid=155643 uid=1000 comm=node path=/etc/ld.so.cache flags=0x80000
+RO time=2026-08-11T12:44:55.673842Z host_pid=155643 uid=1000 comm=node path=/lib/x86_64-linux-gnu/libdl.so.2 flags=0x80000
+RO time=2026-08-11T12:44:55.673868Z host_pid=155643 uid=1000 comm=node path=/lib/x86_64-linux-gnu/libstdc++.so.6 flags=0x80000
+RO time=2026-08-11T12:44:55.673895Z host_pid=155643 uid=1000 comm=node path=/lib/x86_64-linux-gnu/libm.so.6 flags=0x80000
+RO time=2026-08-11T12:44:55.673916Z host_pid=155643 uid=1000 comm=node path=/lib/x86_64-linux-gnu/libgcc_s.so.1 flags=0x80000
+RO time=2026-08-11T12:44:55.673934Z host_pid=155643 uid=1000 comm=node path=/lib/x86_64-linux-gnu/libpthread.so.0 flags=0x80000
+RO time=2026-08-11T12:44:55.673953Z host_pid=155643 uid=1000 comm=node path=/lib/x86_64-linux-gnu/libc.so.6 flags=0x80000
+RO time=2026-08-11T12:44:55.676013Z host_pid=155643 uid=1000 comm=node path=/etc/ssl/openssl.cnf flags=0x0
+RO time=2026-08-11T12:44:55.677043Z host_pid=155643 uid=1000 comm=MainThread path=/proc/version_signature flags=0x80000
+RO time=2026-08-11T12:44:55.677658Z host_pid=155643 uid=1000 comm=MainThread path=/proc/self/maps flags=0x80000
+RO time=2026-08-11T12:44:55.677728Z host_pid=155643 uid=1000 comm=MainThread path=/proc/self/cgroup flags=0x80000
+RO time=2026-08-11T12:44:55.677740Z host_pid=155643 uid=1000 comm=MainThread path=/sys/fs/cgroup//memory.max flags=0x80000
+RO time=2026-08-11T12:44:55.677754Z host_pid=155643 uid=1000 comm=MainThread path=/sys/fs/cgroup//memory.high flags=0x80000
+RO time=2026-08-11T12:44:55.677760Z host_pid=155643 uid=1000 comm=MainThread path=/proc/meminfo flags=0x80000
+RO time=2026-08-11T12:44:55.677950Z host_pid=155643 uid=1000 comm=MainThread path=/proc/self/maps flags=0x0
+RO time=2026-08-11T12:44:55.677966Z host_pid=155643 uid=1000 comm=MainThread path=/usr/bin/node flags=0x0
+RO time=2026-08-11T12:44:55.684691Z host_pid=155643 uid=1000 comm=MainThread path=/workspace/visualization/server.js flags=0x80000
+RO time=2026-08-11T12:44:55.684866Z host_pid=155643 uid=1000 comm=MainThread path=/workspace/visualization/package.json flags=0x80000
+EXEC time=2026-08-11T12:44:55.686213Z host_pid=155633 ppid=155630 uid=1000 comm=bash file=/usr/bin/curl args=curl -sS -o /dev/null -w %{http_code}\n http://127.0.0.1:3000/graph
+RO time=2026-08-11T12:44:55.686437Z host_pid=155633 uid=1000 comm=curl path=/etc/ld.so.cache flags=0x80000
+RO time=2026-08-11T12:44:55.686449Z host_pid=155633 uid=1000 comm=curl path=/lib/x86_64-linux-gnu/libcurl.so.4 flags=0x80000
+RO time=2026-08-11T12:44:55.686475Z host_pid=155633 uid=1000 comm=curl path=/lib/x86_64-linux-gnu/libz.so.1 flags=0x80000
+RO time=2026-08-11T12:44:55.686498Z host_pid=155633 uid=1000 comm=curl path=/lib/x86_64-linux-gnu/libc.so.6 flags=0x80000
+RO time=2026-08-11T12:44:55.686523Z host_pid=155633 uid=1000 comm=curl path=/lib/x86_64-linux-gnu/libnghttp2.so.14 flags=0x80000
+RO time=2026-08-11T12:44:55.686542Z host_pid=155633 uid=1000 comm=curl path=/lib/x86_64-linux-gnu/libidn2.so.0 flags=0x80000
+RO time=2026-08-11T12:44:55.686560Z host_pid=155633 uid=1000 comm=curl path=/lib/x86_64-linux-gnu/librtmp.so.1 flags=0x80000
+RO time=2026-08-11T12:44:55.686584Z host_pid=155633 uid=1000 comm=curl path=/lib/x86_64-linux-gnu/libssh.so.4 flags=0x80000
+RO time=2026-08-11T12:44:55.686604Z host_pid=155633 uid=1000 comm=curl path=/lib/x86_64-linux-gnu/libpsl.so.5 flags=0x80000
+RO time=2026-08-11T12:44:55.686624Z host_pid=155633 uid=1000 comm=curl path=/lib/x86_64-linux-gnu/libssl.so.3 flags=0x80000
+RO time=2026-08-11T12:44:55.686646Z host_pid=155633 uid=1000 comm=curl path=/lib/x86_64-linux-gnu/libcrypto.so.3 flags=0x80000
+RO time=2026-08-11T12:44:55.686672Z host_pid=155633 uid=1000 comm=curl path=/lib/x86_64-linux-gnu/libgssapi_krb5.so.2 flags=0x80000
+RO time=2026-08-11T12:44:55.686691Z host_pid=155633 uid=1000 comm=curl path=/lib/x86_64-linux-gnu/libldap.so.2 flags=0x80000
+RO time=2026-08-11T12:44:55.686718Z host_pid=155633 uid=1000 comm=curl path=/lib/x86_64-linux-gnu/liblber.so.2 flags=0x80000
+RO time=2026-08-11T12:44:55.686740Z host_pid=155633 uid=1000 comm=curl path=/lib/x86_64-linux-gnu/libzstd.so.1 flags=0x80000
+RO time=2026-08-11T12:44:55.686758Z host_pid=155633 uid=1000 comm=curl path=/lib/x86_64-linux-gnu/libbrotlidec.so.1 flags=0x80000
+RO time=2026-08-11T12:44:55.686777Z host_pid=155633 uid=1000 comm=curl path=/lib/x86_64-linux-gnu/libunistring.so.5 flags=0x80000
+RO time=2026-08-11T12:44:55.686799Z host_pid=155633 uid=1000 comm=curl path=/lib/x86_64-linux-gnu/libgnutls.so.30 flags=0x80000
+RO time=2026-08-11T12:44:55.686865Z host_pid=155633 uid=1000 comm=curl path=/lib/x86_64-linux-gnu/libhogweed.so.6 flags=0x80000
+RO time=2026-08-11T12:44:55.686901Z host_pid=155633 uid=1000 comm=curl path=/lib/x86_64-linux-gnu/libnettle.so.8 flags=0x80000
+RO time=2026-08-11T12:44:55.686923Z host_pid=155633 uid=1000 comm=curl path=/lib/x86_64-linux-gnu/libgmp.so.10 flags=0x80000
+RO time=2026-08-11T12:44:55.686947Z host_pid=155633 uid=1000 comm=curl path=/lib/x86_64-linux-gnu/libkrb5.so.3 flags=0x80000
+RO time=2026-08-11T12:44:55.686968Z host_pid=155633 uid=1000 comm=curl path=/lib/x86_64-linux-gnu/libk5crypto.so.3 flags=0x80000
+RO time=2026-08-11T12:44:55.686991Z host_pid=155633 uid=1000 comm=curl path=/lib/x86_64-linux-gnu/libcom_err.so.2 flags=0x80000
+RO time=2026-08-11T12:44:55.687009Z host_pid=155633 uid=1000 comm=curl path=/lib/x86_64-linux-gnu/libkrb5support.so.0 flags=0x80000
+RO time=2026-08-11T12:44:55.687030Z host_pid=155633 uid=1000 comm=curl path=/lib/x86_64-linux-gnu/libsasl2.so.2 flags=0x80000
+RO time=2026-08-11T12:44:55.687049Z host_pid=155633 uid=1000 comm=curl path=/lib/x86_64-linux-gnu/libbrotlicommon.so.1 flags=0x80000
+RO time=2026-08-11T12:44:55.687066Z host_pid=155633 uid=1000 comm=curl path=/lib/x86_64-linux-gnu/libp11-kit.so.0 flags=0x80000
+RO time=2026-08-11T12:44:55.687091Z host_pid=155633 uid=1000 comm=curl path=/lib/x86_64-linux-gnu/libtasn1.so.6 flags=0x80000
+RO time=2026-08-11T12:44:55.687115Z host_pid=155633 uid=1000 comm=curl path=/lib/x86_64-linux-gnu/libkeyutils.so.1 flags=0x80000
+RO time=2026-08-11T12:44:55.687133Z host_pid=155633 uid=1000 comm=curl path=/lib/x86_64-linux-gnu/libresolv.so.2 flags=0x80000
+RO time=2026-08-11T12:44:55.687152Z host_pid=155633 uid=1000 comm=curl path=/lib/x86_64-linux-gnu/libffi.so.8 flags=0x80000
+RO time=2026-08-11T12:44:55.688458Z host_pid=155633 uid=1000 comm=curl path=/etc/gnutls/config flags=0x80000
+RO time=2026-08-11T12:44:55.688614Z host_pid=155633 uid=1000 comm=curl path=/proc/sys/crypto/fips_enabled flags=0x0
+RO time=2026-08-11T12:44:55.688769Z host_pid=155633 uid=1000 comm=curl path=/usr/lib/ssl/openssl.cnf flags=0x0
+RO time=2026-08-11T12:44:55.688900Z host_pid=155633 uid=1000 comm=curl path=/usr/lib/locale/locale-archive flags=0x80000
+RO time=2026-08-11T12:44:55.688903Z host_pid=155633 uid=1000 comm=curl path=/usr/share/locale/locale.alias flags=0x80000
+RO time=2026-08-11T12:44:55.688908Z host_pid=155633 uid=1000 comm=curl path=/usr/lib/locale/C.UTF-8/LC_IDENTIFICATION flags=0x80000
+RO time=2026-08-11T12:44:55.688910Z host_pid=155633 uid=1000 comm=curl path=/usr/lib/locale/C.utf8/LC_IDENTIFICATION flags=0x80000
+RO time=2026-08-11T12:44:55.688923Z host_pid=155633 uid=1000 comm=curl path=/usr/lib/x86_64-linux-gnu/gconv/gconv-modules.cache flags=0x80000
+RO time=2026-08-11T12:44:55.688936Z host_pid=155633 uid=1000 comm=curl path=/usr/lib/locale/C.UTF-8/LC_MEASUREMENT flags=0x80000
+RO time=2026-08-11T12:44:55.688937Z host_pid=155633 uid=1000 comm=curl path=/usr/lib/locale/C.utf8/LC_MEASUREMENT flags=0x80000
+RO time=2026-08-11T12:44:55.688949Z host_pid=155633 uid=1000 comm=curl path=/usr/lib/locale/C.UTF-8/LC_TELEPHONE flags=0x80000
+RO time=2026-08-11T12:44:55.688951Z host_pid=155633 uid=1000 comm=curl path=/usr/lib/locale/C.utf8/LC_TELEPHONE flags=0x80000
+RO time=2026-08-11T12:44:55.688962Z host_pid=155633 uid=1000 comm=curl path=/usr/lib/locale/C.UTF-8/LC_ADDRESS flags=0x80000
+RO time=2026-08-11T12:44:55.688964Z host_pid=155633 uid=1000 comm=curl path=/usr/lib/locale/C.utf8/LC_ADDRESS flags=0x80000
+RO time=2026-08-11T12:44:55.688975Z host_pid=155633 uid=1000 comm=curl path=/usr/lib/locale/C.UTF-8/LC_NAME flags=0x80000
+RO time=2026-08-11T12:44:55.688978Z host_pid=155633 uid=1000 comm=curl path=/usr/lib/locale/C.utf8/LC_NAME flags=0x80000
+RO time=2026-08-11T12:44:55.688987Z host_pid=155633 uid=1000 comm=curl path=/usr/lib/locale/C.UTF-8/LC_PAPER flags=0x80000
+RO time=2026-08-11T12:44:55.688989Z host_pid=155633 uid=1000 comm=curl path=/usr/lib/locale/C.utf8/LC_PAPER flags=0x80000
+RO time=2026-08-11T12:44:55.689002Z host_pid=155633 uid=1000 comm=curl path=/usr/lib/locale/C.UTF-8/LC_MESSAGES flags=0x80000
+RO time=2026-08-11T12:44:55.689004Z host_pid=155633 uid=1000 comm=curl path=/usr/lib/locale/C.utf8/LC_MESSAGES flags=0x80000
+RO time=2026-08-11T12:44:55.689013Z host_pid=155633 uid=1000 comm=curl path=/usr/lib/locale/C.utf8/LC_MESSAGES/SYS_LC_MESSAGES flags=0x80000
+RO time=2026-08-11T12:44:55.689026Z host_pid=155633 uid=1000 comm=curl path=/usr/lib/locale/C.UTF-8/LC_MONETARY flags=0x80000
+RO time=2026-08-11T12:44:55.689028Z host_pid=155633 uid=1000 comm=curl path=/usr/lib/locale/C.utf8/LC_MONETARY flags=0x80000
+RO time=2026-08-11T12:44:55.689040Z host_pid=155633 uid=1000 comm=curl path=/usr/lib/locale/C.UTF-8/LC_COLLATE flags=0x80000
+RO time=2026-08-11T12:44:55.689042Z host_pid=155633 uid=1000 comm=curl path=/usr/lib/locale/C.utf8/LC_COLLATE flags=0x80000
+RO time=2026-08-11T12:44:55.689052Z host_pid=155633 uid=1000 comm=curl path=/usr/lib/locale/C.UTF-8/LC_TIME flags=0x80000
+RO time=2026-08-11T12:44:55.689053Z host_pid=155633 uid=1000 comm=curl path=/usr/lib/locale/C.utf8/LC_TIME flags=0x80000
+RO time=2026-08-11T12:44:55.689065Z host_pid=155633 uid=1000 comm=curl path=/usr/lib/locale/C.UTF-8/LC_NUMERIC flags=0x80000
+RO time=2026-08-11T12:44:55.689067Z host_pid=155633 uid=1000 comm=curl path=/usr/lib/locale/C.utf8/LC_NUMERIC flags=0x80000
+RO time=2026-08-11T12:44:55.689077Z host_pid=155633 uid=1000 comm=curl path=/usr/lib/locale/C.UTF-8/LC_CTYPE flags=0x80000
+RO time=2026-08-11T12:44:55.689078Z host_pid=155633 uid=1000 comm=curl path=/usr/lib/locale/C.utf8/LC_CTYPE flags=0x80000
+RO time=2026-08-11T12:44:55.689097Z host_pid=155633 uid=1000 comm=curl path=/root/.curlrc flags=0x0
+RO time=2026-08-11T12:44:55.689101Z host_pid=155633 uid=1000 comm=curl path=/root/.config/curlrc flags=0x0
+RO time=2026-08-11T12:44:55.689138Z host_pid=155633 uid=1000 comm=curl path=/etc/nsswitch.conf flags=0x80000
+RO time=2026-08-11T12:44:55.689154Z host_pid=155633 uid=1000 comm=curl path=/etc/passwd flags=0x80000
+RO time=2026-08-11T12:44:55.689162Z host_pid=155633 uid=1000 comm=curl path=/root/.curlrc flags=0x0
+CONNECT time=2026-08-11T12:44:55.689257771Z timestamp_ns=3256196697678 host_pid=155633 tid=155633 uid=1000 comm=curl protocol=tcp dst=127.0.0.1:3000 hostnames=
+RO time=2026-08-11T12:44:55.690065Z host_pid=146223 uid=1000 comm=libuv-worker path=/workspace/visualization/public/index.html flags=0x80000
+RW time=2026-08-11T12:44:55.690249Z host_pid=155633 uid=1000 comm=curl path=/dev/null flags=0x241
+EXEC time=2026-08-11T12:44:55.694239Z host_pid=155651 ppid=132497 uid=1000 comm=tokio-runtime-w file=/tmp/.tmpsbucyo/lsb_release args=lsb_release -a
+EXEC time=2026-08-11T12:44:55.694257Z host_pid=155651 ppid=132497 uid=1000 comm=tokio-runtime-w file=/usr/local/sbin/lsb_release args=lsb_release -a
+EXEC time=2026-08-11T12:44:55.694268Z host_pid=155651 ppid=132497 uid=1000 comm=tokio-runtime-w file=/usr/local/bin/lsb_release args=lsb_release -a
+EXEC time=2026-08-11T12:44:55.694280Z host_pid=155651 ppid=132497 uid=1000 comm=tokio-runtime-w file=/usr/sbin/lsb_release args=lsb_release -a
+EXEC time=2026-08-11T12:44:55.694291Z host_pid=155651 ppid=132497 uid=1000 comm=tokio-runtime-w file=/usr/bin/lsb_release args=lsb_release -a
+EXEC time=2026-08-11T12:44:55.694300Z host_pid=155651 ppid=132497 uid=1000 comm=tokio-runtime-w file=/sbin/lsb_release args=lsb_release -a
+EXEC time=2026-08-11T12:44:55.694312Z host_pid=155651 ppid=132497 uid=1000 comm=tokio-runtime-w file=/bin/lsb_release args=lsb_release -a
+EXEC time=2026-08-11T12:44:55.694326Z host_pid=155651 ppid=132497 uid=1000 comm=tokio-runtime-w file=/usr/local/share/npm-global/bin/lsb_release args=lsb_release -a
+EXEC time=2026-08-11T12:44:55.694467Z host_pid=155652 ppid=132497 uid=1000 comm=tokio-runtime-w file=/tmp/.tmpsbucyo/getconf args=getconf LONG_BIT
+EXEC time=2026-08-11T12:44:55.694500Z host_pid=155652 ppid=132497 uid=1000 comm=tokio-runtime-w file=/usr/local/sbin/getconf args=getconf LONG_BIT
+EXEC time=2026-08-11T12:44:55.694522Z host_pid=155652 ppid=132497 uid=1000 comm=tokio-runtime-w file=/usr/local/bin/getconf args=getconf LONG_BIT
+EXEC time=2026-08-11T12:44:55.694542Z host_pid=155652 ppid=132497 uid=1000 comm=tokio-runtime-w file=/usr/sbin/getconf args=getconf LONG_BIT
+EXEC time=2026-08-11T12:44:55.694559Z host_pid=155652 ppid=132497 uid=1000 comm=tokio-runtime-w file=/usr/bin/getconf args=getconf LONG_BIT
+RO time=2026-08-11T12:44:55.694817Z host_pid=155652 uid=1000 comm=getconf path=/etc/ld.so.cache flags=0x80000
+RO time=2026-08-11T12:44:55.694836Z host_pid=155652 uid=1000 comm=getconf path=/lib/x86_64-linux-gnu/libc.so.6 flags=0x80000
+EXEC time=2026-08-11T12:44:55.695234Z host_pid=155653 ppid=132497 uid=1000 comm=tokio-runtime-w file=/tmp/.tmpsbucyo/uname args=uname -m
+EXEC time=2026-08-11T12:44:55.695253Z host_pid=155653 ppid=132497 uid=1000 comm=tokio-runtime-w file=/usr/local/sbin/uname args=uname -m
+EXEC time=2026-08-11T12:44:55.695262Z host_pid=155653 ppid=132497 uid=1000 comm=tokio-runtime-w file=/usr/local/bin/uname args=uname -m
+EXEC time=2026-08-11T12:44:55.695271Z host_pid=155653 ppid=132497 uid=1000 comm=tokio-runtime-w file=/usr/sbin/uname args=uname -m
+EXEC time=2026-08-11T12:44:55.695279Z host_pid=155653 ppid=132497 uid=1000 comm=tokio-runtime-w file=/usr/bin/uname args=uname -m
+RO time=2026-08-11T12:44:55.695401Z host_pid=155653 uid=1000 comm=uname path=/etc/ld.so.cache flags=0x80000
+RO time=2026-08-11T12:44:55.695410Z host_pid=155653 uid=1000 comm=uname path=/lib/x86_64-linux-gnu/libc.so.6 flags=0x80000
+EXEC time=2026-08-11T12:44:55.699071Z host_pid=155654 ppid=132497 uid=1000 comm=tokio-runtime-w file=/tmp/.tmpsbucyo/lsb_release args=lsb_release -a
+EXEC time=2026-08-11T12:44:55.699091Z host_pid=155654 ppid=132497 uid=1000 comm=tokio-runtime-w file=/usr/local/sbin/lsb_release args=lsb_release -a
+EXEC time=2026-08-11T12:44:55.699102Z host_pid=155654 ppid=132497 uid=1000 comm=tokio-runtime-w file=/usr/local/bin/lsb_release args=lsb_release -a
+EXEC time=2026-08-11T12:44:55.699112Z host_pid=155654 ppid=132497 uid=1000 comm=tokio-runtime-w file=/usr/sbin/lsb_release args=lsb_release -a
+EXEC time=2026-08-11T12:44:55.699123Z host_pid=155654 ppid=132497 uid=1000 comm=tokio-runtime-w file=/usr/bin/lsb_release args=lsb_release -a
+EXEC time=2026-08-11T12:44:55.699133Z host_pid=155654 ppid=132497 uid=1000 comm=tokio-runtime-w file=/sbin/lsb_release args=lsb_release -a
+EXEC time=2026-08-11T12:44:55.699145Z host_pid=155654 ppid=132497 uid=1000 comm=tokio-runtime-w file=/bin/lsb_release args=lsb_release -a
+EXEC time=2026-08-11T12:44:55.699155Z host_pid=155654 ppid=132497 uid=1000 comm=tokio-runtime-w file=/usr/local/share/npm-global/bin/lsb_release args=lsb_release -a
+EXEC time=2026-08-11T12:44:55.699259Z host_pid=155655 ppid=132497 uid=1000 comm=tokio-runtime-w file=/tmp/.tmpsbucyo/getconf args=getconf LONG_BIT
+EXEC time=2026-08-11T12:44:55.699273Z host_pid=155655 ppid=132497 uid=1000 comm=tokio-runtime-w file=/usr/local/sbin/getconf args=getconf LONG_BIT
+EXEC time=2026-08-11T12:44:55.699283Z host_pid=155655 ppid=132497 uid=1000 comm=tokio-runtime-w file=/usr/local/bin/getconf args=getconf LONG_BIT
+EXEC time=2026-08-11T12:44:55.699293Z host_pid=155655 ppid=132497 uid=1000 comm=tokio-runtime-w file=/usr/sbin/getconf args=getconf LONG_BIT
+EXEC time=2026-08-11T12:44:55.699305Z host_pid=155655 ppid=132497 uid=1000 comm=tokio-runtime-w file=/usr/bin/getconf args=getconf LONG_BIT
+RO time=2026-08-11T12:44:55.699438Z host_pid=155655 uid=1000 comm=getconf path=/etc/ld.so.cache flags=0x80000
+RO time=2026-08-11T12:44:55.699449Z host_pid=155655 uid=1000 comm=getconf path=/lib/x86_64-linux-gnu/libc.so.6 flags=0x80000
+EXEC time=2026-08-11T12:44:55.699701Z host_pid=155656 ppid=132497 uid=1000 comm=tokio-runtime-w file=/tmp/.tmpsbucyo/uname args=uname -m
+EXEC time=2026-08-11T12:44:55.699717Z host_pid=155656 ppid=132497 uid=1000 comm=tokio-runtime-w file=/usr/local/sbin/uname args=uname -m
+EXEC time=2026-08-11T12:44:55.699725Z host_pid=155656 ppid=132497 uid=1000 comm=tokio-runtime-w file=/usr/local/bin/uname args=uname -m
+EXEC time=2026-08-11T12:44:55.699733Z host_pid=155656 ppid=132497 uid=1000 comm=tokio-runtime-w file=/usr/sbin/uname args=uname -m
+EXEC time=2026-08-11T12:44:55.699742Z host_pid=155656 ppid=132497 uid=1000 comm=tokio-runtime-w file=/usr/bin/uname args=uname -m
+RO time=2026-08-11T12:44:55.699827Z host_pid=155656 uid=1000 comm=uname path=/etc/ld.so.cache flags=0x80000
+RO time=2026-08-11T12:44:55.699834Z host_pid=155656 uid=1000 comm=uname path=/lib/x86_64-linux-gnu/libc.so.6 flags=0x80000
+CONNECT time=2026-08-11T12:44:55.702855677Z timestamp_ns=3256210295655 host_pid=132495 tid=155407 uid=1000 comm=tokio-runtime-w protocol=udp dst=192.168.200.1:53 hostnames=
+CONNECT time=2026-08-11T12:44:55.702949293Z timestamp_ns=3256210387287 host_pid=132495 tid=155407 uid=1000 comm=tokio-runtime-w protocol=udp dst=192.168.200.1:53 hostnames=
+CONNECT time=2026-08-11T12:44:55.706287064Z timestamp_ns=3256213724817 host_pid=132495 tid=155407 uid=1000 comm=tokio-runtime-w protocol=udp dst=172.64.155.209:65535 hostnames=chatgpt.com
+CONNECT time=2026-08-11T12:44:55.706295099Z timestamp_ns=3256213732822 host_pid=132495 tid=155407 uid=1000 comm=tokio-runtime-w protocol=udp dst=104.18.32.47:65535 hostnames=chatgpt.com
+CONNECT time=2026-08-11T12:44:55.706302153Z timestamp_ns=3256213739876 host_pid=132495 tid=155407 uid=1000 comm=tokio-runtime-w protocol=udp dst=2606:4700:4408::ac40:9bd1:65535 hostnames=chatgpt.com
+CONNECT time=2026-08-11T12:44:55.706313754Z timestamp_ns=3256213751477 host_pid=132495 tid=155407 uid=1000 comm=tokio-runtime-w protocol=udp dst=2a06:98c1:3101::6812:202f:65535 hostnames=chatgpt.com
+CONNECT time=2026-08-11T12:44:55.706352036Z timestamp_ns=3256213789749 host_pid=132495 tid=132510 uid=1000 comm=tokio-runtime-w protocol=tcp dst=172.64.155.209:443 hostnames=chatgpt.com

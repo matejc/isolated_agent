@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>System Event Stream</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script>
+      document.documentElement.dataset.view = location.pathname === '/graph' ? 'graph' : 'dashboard';
+    </script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <h1>System Event Stream</h1>
+        <p id="status">Waiting for events</p>
+      </div>
+      <div class="actions">
+        <button id="pauseButton" type="button" title="Pause live updates">Pause</button>
+        <button id="clearButton" type="button" title="Clear server event buffer">Clear</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="controls" aria-label="Filters">
+        <label>
+          Type
+          <select id="typeFilter">
+            <option value="all">All</option>
+          </select>
+        </label>
+        <label>
+          Command
+          <input id="commandFilter" type="search" placeholder="comm contains" />
+        </label>
+        <label>
+          Path, host, or args
+          <input id="textFilter" type="search" placeholder="filter visible events" />
+        </label>
+        <label>
+          Window
+          <select id="windowFilter">
+            <option value="200">Last 200</option>
+            <option value="500">Last 500</option>
+            <option value="1000">Last 1000</option>
+            <option value="5000">Last 5000</option>
+          </select>
+        </label>
+      </section>
+
+      <section class="stats" aria-label="Summary">
+        <div><span id="totalCount">0</span><small>Total</small></div>
+        <div><span id="execCount">0</span><small>Exec</small></div>
+        <div><span id="readCount">0</span><small>Reads</small></div>
+        <div><span id="connectCount">0</span><small>Connect</small></div>
+      </section>
+
+      <section class="grid">
+        <article class="panel graph-panel">
+          <div class="panel-heading">
+            <h2>Process Activity Graph</h2>
+            <span id="graphMeta"></span>
+          </div>
+          <svg id="graph" role="img" aria-label="Force directed event graph"></svg>
+        </article>
+
+        <article class="panel">
+          <div class="panel-heading">
+            <h2>Event Rate</h2>
+            <span id="rateMeta"></span>
+          </div>
+          <svg id="timeline" role="img" aria-label="Event rate over time"></svg>
+        </article>
+
+        <article class="panel">
+          <div class="panel-heading">
+            <h2>Top Commands</h2>
+            <span id="commandMeta"></span>
+          </div>
+          <svg id="commands" role="img" aria-label="Top commands bar chart"></svg>
+        </article>
+
+        <article class="panel table-panel">
+          <div class="panel-heading">
+            <h2>Recent Events</h2>
+            <span id="tableMeta"></span>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Time</th>
+                  <th>Type</th>
+                  <th>PID</th>
+                  <th>Comm</th>
+                  <th>Target</th>
+                </tr>
+              </thead>
+              <tbody id="eventsTable"></tbody>
+            </table>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <div id="tooltip" class="tooltip" hidden></div>
+    <script src="/vendor/d3/d3.min.js"></script>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

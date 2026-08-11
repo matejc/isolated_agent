@@ -1,5 +1,5 @@
 /*/state/
-/src/netmon/netmon
-/src/netmon/src/netmon.bpf.o
-/src/netmon/src/netmon.skel.h
-/src/netmon/tests/test_dns
+/src/netmon-go/netmon
+*.o
+/src/visualization/node_modules
+/src/.code

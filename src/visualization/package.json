@@ -1,0 +1,15 @@
+{
+  "name": "event-stream-visualization",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "@fastify/static": "latest",
+    "d3": "latest",
+    "fastify": "latest"
+  },
+  "devDependencies": {}
+}
