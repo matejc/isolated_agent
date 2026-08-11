@@ -5,6 +5,7 @@ in
     name = "env";
     packages = with pkgs; [
       llvmPackages.clang-unwrapped
+      llvmPackages.libllvm
       pkg-config
       bpftrace
       bpftools
@@ -13,7 +14,8 @@ in
       go
     ];
     shellHook = ''
-      export LIBCLANG_PATH="${pkgs.llvmPackages.libclang}/lib";
+      export LIBCLANG_PATH=${pkgs.llvmPackages.libclang}/lib
+      export C_INCLUDE_PATH=${pkgs.libbpf}/include:$C_INCLUDE_PATH
     '';
     hardeningDisable = [
       "zerocallusedregs"

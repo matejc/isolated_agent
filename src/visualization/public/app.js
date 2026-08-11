@@ -167,7 +167,7 @@ function renderGraph(events) {
     }
 
     if (event.ppid) {
-      const parentPath = processPathByPid.get(event.ppid) || 'unknown parent path';
+      const parentPath = processPathByPid.get(event.ppid) || event.comm || 'unknown parent';
       const parentId = `process:${parentPath}`;
       ensureNode(nodesById, parentId, parentPath, 'parent', event);
       if (parentId !== processId) {
