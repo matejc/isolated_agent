@@ -126,3 +126,27 @@ CONNECT time=2026-08-06T20:18:17.319932463Z timestamp_ns=30290914935931 host_pid
 CONNECT time=2026-08-06T20:18:17.319936688Z timestamp_ns=30290914940157 host_pid=266875 tid=328194 uid=1000 comm=tokio-rt-worker protocol=udp dst=104.18.32.47:65535 hostnames=chatgpt.com
 CONNECT time=2026-08-06T20:18:17.319961980Z timestamp_ns=30290914965449 host_pid=266875 tid=266894 uid=1000 comm=tokio-rt-worker protocol=tcp dst=172.64.155.209:443 hostnames=chatgpt.com
 ```
+
+
+### Visualization
+
+Build:
+
+```
+cd ./src/visualization
+npm install
+```
+
+Run:
+
+```
+node ./src/visualization/server.js
+```
+
+Pipe inspection tool output to visualization server:
+
+```
+./src/bpf_log.sh isolated_codex | xargs -I{} sh -c 'echo "{}" | tee /dev/stderr | curl -sS -o /dev/null --data-binary @- http://127.0.0.1:3000/api/events'
+```
+
+Run actions in ai agent and watch `http://127.0.0.1:3000/graph` in browser.
