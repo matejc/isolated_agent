@@ -90,7 +90,10 @@ func (c *Cache) Put(id uint64, family int, address []byte, name string, ttl uint
 	}
 	if len(entry.Names) < MaxNames {
 		entry.Names = append(entry.Names, Name{Value: name, ExpiresNS: expires})
+		return
 	}
+	copy(entry.Names, entry.Names[1:])
+	entry.Names[len(entry.Names)-1] = Name{Value: name, ExpiresNS: expires}
 }
 
 func (c *Cache) Prune(now uint64) {

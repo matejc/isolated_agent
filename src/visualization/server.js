@@ -80,6 +80,8 @@ function parseLine(line) {
   if (firstSpace === -1) return null;
 
   const type = line.slice(0, firstSpace).trim();
+  if (!/^[A-Z]+$/.test(type)) return null;
+
   const fields = parseFields(line.slice(firstSpace + 1));
   const normalizedTime = normalizeTimestamp(fields.time);
 

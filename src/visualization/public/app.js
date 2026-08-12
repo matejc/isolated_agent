@@ -148,28 +148,29 @@ function renderGraph(events) {
   svg.attr('viewBox', [0, 0, width, height]);
   svg.selectAll('*').remove();
 
-  const limited = events.slice(-260);
-  const processPathByPid = buildProcessPathIndex(limited);
+  const processIdentityByPid = buildProcessIdentityIndex(state.events);
   const nodesById = new Map();
   const linksById = new Map();
 
-  for (const event of limited) {
-    const processPath = processPathFor(event, processPathByPid);
-    const processId = `process:${processPath}`;
-    const processLabel = processPath;
-    ensureNode(nodesById, processId, processLabel, 'process', event);
+  for (const event of events) {
+    const processIdentity = processIdentityFor(event, processIdentityByPid);
+    const processId = `process:${processIdentity.key}`;
+    ensureNode(nodesById, processId, processIdentity.label, 'process', event);
 
     if (event.type !== 'EXEC') {
-      const target = graphTargetFor(event, processPath);
-      const targetId = `${event.type}:${target.key}`;
+      const target = graphTargetFor(event);
+      const targetId = graphTargetId(event, target, processId);
       ensureNode(nodesById, targetId, target.label, event.type, event);
       ensureLink(linksById, processId, targetId, event.type, event);
     }
 
     if (event.ppid) {
-      const parentPath = processPathByPid.get(event.ppid) || event.comm || 'unknown parent';
-      const parentId = `process:${parentPath}`;
-      ensureNode(nodesById, parentId, parentPath, 'parent', event);
+      const parentIdentity = processIdentityByPid.get(event.ppid) || {
+        key: `pid:${event.ppid}`,
+        label: 'unknown parent',
+      };
+      const parentId = `process:${parentIdentity.key}`;
+      ensureNode(nodesById, parentId, parentIdentity.label, 'parent', event);
       if (parentId !== processId) {
         ensureLink(linksById, parentId, processId, 'PPID', event);
       }
@@ -178,7 +179,7 @@ function renderGraph(events) {
 
   const nodes = [...nodesById.values()];
   const links = [...linksById.values()];
-  els.graphMeta.textContent = `${nodes.length} nodes, ${links.length} links`;
+  els.graphMeta.textContent = `${events.length} events, ${nodes.length} nodes, ${links.length} links`;
 
   if (!nodes.length) {
     drawEmpty(svg, width, height, 'Post event lines to see process links');
@@ -217,10 +218,12 @@ function renderGraph(events) {
     .on('mouseleave', hideTooltip);
 
   const simulation = d3.forceSimulation(nodes)
-    .force('link', d3.forceLink(links).id((d) => d.id).distance((d) => d.type === 'PPID' ? 55 : 95).strength(0.55))
-    .force('charge', d3.forceManyBody().strength(-220))
+    .force('link', d3.forceLink(links).id((d) => d.id).distance((d) => d.type === 'PPID' ? 155 : 225).strength(0.55))
+    .force('charge', d3.forceManyBody().strength(-450).distanceMax(850))
     .force('center', d3.forceCenter(width / 2, height / 2))
-    .force('collision', d3.forceCollide().radius(34))
+    .force('x', d3.forceX(width / 2).strength(0.02))
+    .force('y', d3.forceY(height / 2).strength(0.02))
+    .force('collision', d3.forceCollide().radius(46).strength(0.9).iterations(2))
     .on('tick', () => {
       link
         .attr('x1', (d) => d.source.x)
@@ -237,7 +240,10 @@ function renderGraph(events) {
 function ensureNode(map, id, label, kind, event) {
   if (!map.has(id)) map.set(id, { id, label, kind, count: 0, samples: [] });
   const node = map.get(id);
-  if (node.kind === 'parent' && kind === 'process') node.kind = 'process';
+  if (node.kind === 'parent' && kind === 'process') {
+    node.kind = 'process';
+    node.label = label;
+  }
   node.count += 1;
   if (node.samples.length < 3) node.samples.push(event.raw);
 }
@@ -248,32 +254,94 @@ function ensureLink(map, source, target, type, event) {
   map.get(id).count += 1;
 }
 
-function buildProcessPathIndex(events) {
+function buildProcessIdentityIndex(events) {
   const index = new Map();
+  const candidatesByPid = new Map();
+
   for (const event of events) {
     if (event.type === 'EXEC' && event.host_pid && event.file) {
-      index.set(event.host_pid, event.file);
+      if (!candidatesByPid.has(event.host_pid)) candidatesByPid.set(event.host_pid, []);
+      candidatesByPid.get(event.host_pid).push(event);
     }
   }
+
+  for (const [pid, candidates] of candidatesByPid) {
+    const executablePath = selectExecutablePath(candidates);
+    index.set(pid, { key: `path:${executablePath}`, label: executablePath });
+  }
+
+  // In EXEC records, comm names the calling task and ppid identifies that
+  // parent. Use it when the parent's executable path is not present.
+  for (const event of events) {
+    if (event.type === 'EXEC' && event.ppid && !index.has(event.ppid) && event.comm) {
+      index.set(event.ppid, { key: `comm:${event.comm}`, label: event.comm });
+    }
+  }
+
+  // Some processes have activity records but no EXEC record in the retained
+  // history. Group those by their observed comm value instead.
+  for (const event of events) {
+    if (event.host_pid && !index.has(event.host_pid) && event.comm) {
+      index.set(event.host_pid, { key: `comm:${event.comm}`, label: event.comm });
+    }
+  }
+
   return index;
 }
 
-function processPathFor(event, processPathByPid) {
-  if (event.host_pid && processPathByPid.has(event.host_pid)) return processPathByPid.get(event.host_pid);
-  return event.file || event.comm || 'unknown process path';
+function processIdentityFor(event, processIdentityByPid) {
+  if (event.host_pid && processIdentityByPid.has(event.host_pid)) return processIdentityByPid.get(event.host_pid);
+  if (event.comm) return { key: `comm:${event.comm}`, label: event.comm };
+  const command = commandFromArgs(event.args) || basename(event.file);
+  if (command) return { key: `command:${command}`, label: command };
+  return { key: `pid:${event.host_pid || 'unknown'}`, label: 'unknown process' };
 }
 
-function graphTargetFor(event, processPath) {
+function selectExecutablePath(events) {
+  return [...events].sort((a, b) => executablePathScore(b) - executablePathScore(a))[0].file;
+}
+
+function executablePathScore(event) {
+  const file = String(event.file || '');
+  const command = basename(commandFromArgs(event.args));
+  let score = basename(file) === command ? 10 : 0;
+  if (file.startsWith('/usr/bin/')) score += 50;
+  else if (file.startsWith('/bin/')) score += 45;
+  else if (file.startsWith('/usr/local/bin/')) score += 40;
+  else if (file.startsWith('/usr/sbin/')) score += 35;
+  else if (file.startsWith('/sbin/')) score += 30;
+  else if (file.startsWith('/usr/local/sbin/')) score += 25;
+  if (file.startsWith('/tmp/')) score -= 20;
+  return score;
+}
+
+function graphTargetFor(event) {
   if (event.type === 'RO' || event.type === 'RW') {
     const directory = parentDirectoryFor(event.path || event.file);
     return {
       key: directory,
-      label: `${event.type}\n${directory}`,
+      label: `${event.type} ${directory}`,
     };
   }
 
   const target = targetFor(event);
   return { key: target, label: target };
+}
+
+function graphTargetId(event, target, processId) {
+  if (event.type === 'RO' || event.type === 'RW') {
+    return `${event.type}:${processId}:${target.key}`;
+  }
+  return `${event.type}:${target.key}`;
+}
+
+function commandFromArgs(args) {
+  return String(args || '').trim().split(/\s+/, 1)[0] || '';
+}
+
+function basename(filePath) {
+  const normalized = String(filePath || '').replace(/\/+$/, '');
+  return normalized.slice(normalized.lastIndexOf('/') + 1);
 }
 
 function parentDirectoryFor(filePath) {
@@ -286,13 +354,15 @@ function parentDirectoryFor(filePath) {
 }
 
 function targetFor(event) {
-  if (event.type === 'CONNECT') return event.hostnames || destinationWithoutPort(event.dst) || 'unknown destination';
+  if (event.type === 'CONNECT') {
+    return event.hostnames ? event.hostnames + ":" + destinationPort(event.dst) : event.dst || 'unknown destination';
+  }
   return event.path || event.file || event.args || 'empty path';
 }
 
-function destinationWithoutPort(destination) {
+function destinationPort(destination) {
   if (!destination) return '';
-  return String(destination).replace(/^\[(.*)]:(\d+)$/, '$1').replace(/:(\d+)$/, '');
+  return String(destination).match(/:(\d+)$/)?.[1];
 }
 
 function renderTimeline(events) {
@@ -408,9 +478,16 @@ function drawEmpty(svg, width, height, message) {
 
 function compactLabel(label) {
   const flat = String(label).replace(/\n/g, ' ');
+  const accessLabel = flat.match(/^(RO|RW)\s+(.+)$/);
+  if (accessLabel) return `${accessLabel[1]} ${compactPath(accessLabel[2], 30)}`;
   if (flat.length <= 36) return flat;
-  const parts = flat.split('/').filter(Boolean);
-  return parts.length > 2 ? `/${parts.slice(-2).join('/')}` : `${flat.slice(0, 33)}...`;
+  return compactPath(flat, 36);
+}
+
+function compactPath(value, maxLength) {
+  if (value.length <= maxLength) return value;
+  const parts = value.split('/').filter(Boolean);
+  return parts.length > 2 ? `/${parts.slice(-2).join('/')}` : `${value.slice(0, maxLength - 3)}...`;
 }
 
 function formatTime(value) {

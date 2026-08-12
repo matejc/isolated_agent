@@ -130,23 +130,10 @@ CONNECT time=2026-08-06T20:18:17.319961980Z timestamp_ns=30290914965449 host_pid
 
 ### Visualization
 
-Build:
-
-```
-cd ./src/visualization
-npm install
-```
-
 Run:
 
 ```
-node ./src/visualization/server.js
-```
-
-Pipe inspection tool output to visualization server:
-
-```
-./src/bpf_log.sh isolated_codex | xargs -I{} sh -c 'echo "{}" | tee /dev/stderr | curl -sS -o /dev/null --data-binary @- http://127.0.0.1:3000/api/events'
+./src/bpf_vis.sh isolated_codex
 ```
 
 Run actions in ai agent and watch `http://127.0.0.1:3000/graph` in browser.
