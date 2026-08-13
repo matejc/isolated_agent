@@ -48,6 +48,7 @@ children+=("$!")
 
 "$BPF_LOG" "$container" |
 while IFS= read -r line; do
+    [[ -n $line ]] || continue
     printf '%s\n' "$line" |
         tee /dev/stderr |
         curl -sS -o /dev/null --data-binary @- http://127.0.0.1:3000/api/events

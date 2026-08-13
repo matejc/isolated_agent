@@ -12,6 +12,7 @@ import (
 	"os/signal"
 	"path/filepath"
 	"runtime"
+	"strings"
 	"syscall"
 	"time"
 	"unsafe"
@@ -232,10 +233,17 @@ func handleEvent(app *app, data []byte) {
 	switch kind {
 	case eventDNSPacket:
 		var event dnsPacketEvent
-		if app.noDNS || binary.Read(bytes.NewReader(data), nativeEndian(), &event) != nil || event.CapturedLen != event.MessageLen {
+		if app.noDNS || binary.Read(bytes.NewReader(data), nativeEndian(), &event) != nil {
 			return
 		}
-		_, _ = dnscache.ParseResponse(app.cache, app.containerID, event.Payload[:event.CapturedLen], event.TimestampNS)
+		if event.CapturedLen > uint16(len(event.Payload)) || event.CapturedLen != event.MessageLen {
+			return
+		}
+		message := event.Payload[:event.CapturedLen]
+		if !dnsResponse(message) {
+			return
+		}
+		_, _ = dnscache.ParseResponse(app.cache, app.containerID, message, event.TimestampNS)
 	case eventConnect:
 		var event connectionEvent
 		if binary.Read(bytes.NewReader(data), nativeEndian(), &event) != nil {
@@ -257,17 +265,23 @@ func printConnection(app *app, event *connectionEvent) {
 		protocol = "tcp"
 	}
 
-	fmt.Printf("CONNECT time=%s timestamp_ns=%d host_pid=%d tid=%d uid=%d comm=%s protocol=%s dst=%s:%d hostnames=",
-		wallTime(event.TimestampNS), event.TimestampNS, event.PID, event.TID, event.UID, commString(event.Comm), protocol, destination, event.DestinationPort)
+	hostnames := make([]string, 0, dnscache.MaxNames)
 	if entry != nil {
-		for i, name := range entry.Names {
-			if i > 0 {
-				fmt.Print(",")
-			}
-			fmt.Print(name.Value)
+		for _, name := range entry.Names {
+			hostnames = append(hostnames, name.Value)
 		}
 	}
-	fmt.Println()
+
+	// bpf_log.sh merges this process's stdout with bpftrace's stdout. Emit the
+	// complete record in one write so another producer cannot splice a record
+	// between the hostname list and its terminating newline.
+	fmt.Printf("CONNECT time=%s timestamp_ns=%d host_pid=%d tid=%d uid=%d comm=%s protocol=%s dst=%s:%d hostnames=%s\n",
+		wallTime(event.TimestampNS), event.TimestampNS, event.PID, event.TID, event.UID, commString(event.Comm), protocol,
+		destination, event.DestinationPort, strings.Join(hostnames, ","))
+}
+
+func dnsResponse(message []byte) bool {
+	return len(message) >= 3 && message[2]&0x80 != 0
 }
 
 func destinationIP(family uint16, raw [16]byte) string {

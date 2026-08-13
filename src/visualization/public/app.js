@@ -2,7 +2,15 @@ const state = {
   events: [],
   paused: false,
   queued: [],
+  eventsRevision: 0,
 };
+
+let graphSimulation = null;
+let renderFrame = null;
+let processIdentityRevision = -1;
+let processIdentityByPid = new Map();
+let typeFilterRevision = -1;
+let availableTypes = ['all'];
 
 const typeColor = d3.scaleOrdinal()
   .domain(['EXEC', 'RO', 'RW', 'CONNECT'])
@@ -34,7 +42,7 @@ const timelineSvg = d3.select('#timeline');
 const commandsSvg = d3.select('#commands');
 
 for (const el of [els.typeFilter, els.commandFilter, els.textFilter, els.windowFilter]) {
-  el.addEventListener('input', render);
+  el.addEventListener('input', scheduleRender);
 }
 
 els.pauseButton.addEventListener('click', () => {
@@ -42,9 +50,10 @@ els.pauseButton.addEventListener('click', () => {
   if (!state.paused && state.queued.length) {
     state.events.push(...state.queued.splice(0));
     trimEvents();
+    markEventsChanged();
   }
   els.pauseButton.textContent = state.paused ? 'Resume' : 'Pause';
-  render();
+  scheduleRender();
 });
 
 els.clearButton.addEventListener('click', async () => {
@@ -68,19 +77,24 @@ function connectStream() {
   source.addEventListener('snapshot', (event) => {
     state.events = JSON.parse(event.data || '[]');
     trimEvents();
-    render();
+    markEventsChanged();
+    scheduleRender();
   });
   source.addEventListener('events', (event) => {
     const incoming = JSON.parse(event.data || '[]');
     if (state.paused) state.queued.push(...incoming);
-    else state.events.push(...incoming);
+    else {
+      state.events.push(...incoming);
+      markEventsChanged();
+    }
     trimEvents();
-    render();
+    scheduleRender();
   });
   source.addEventListener('clear', () => {
     state.events = [];
     state.queued = [];
-    render();
+    markEventsChanged();
+    scheduleRender();
   });
 }
 
@@ -91,6 +105,18 @@ function setStatus(text) {
 
 function trimEvents() {
   if (state.events.length > 5000) state.events.splice(0, state.events.length - 5000);
+}
+
+function markEventsChanged() {
+  state.eventsRevision += 1;
+}
+
+function scheduleRender() {
+  if (renderFrame !== null) return;
+  renderFrame = requestAnimationFrame(() => {
+    renderFrame = null;
+    render();
+  });
 }
 
 function filteredEvents() {
@@ -126,34 +152,40 @@ function render() {
 
 function updateTypeFilter() {
   const current = els.typeFilter.value;
-  const types = ['all', ...new Set(state.events.map((event) => event.type).filter(Boolean).sort())];
-  els.typeFilter.replaceChildren(...types.map((type) => new Option(type === 'all' ? 'All' : type, type)));
-  els.typeFilter.value = types.includes(current) ? current : 'all';
+  if (typeFilterRevision !== state.eventsRevision) {
+    availableTypes = ['all', ...new Set(state.events.map((event) => event.type).filter(Boolean).sort())];
+    els.typeFilter.replaceChildren(...availableTypes.map((type) => new Option(type === 'all' ? 'All' : type, type)));
+    typeFilterRevision = state.eventsRevision;
+  }
+  els.typeFilter.value = availableTypes.includes(current) ? current : 'all';
 }
 
 function renderStats(events) {
+  const counts = { EXEC: 0, RO: 0, CONNECT: 0 };
+  for (const event of events) {
+    if (Object.hasOwn(counts, event.type)) counts[event.type] += 1;
+  }
   els.totalCount.textContent = events.length.toLocaleString();
-  els.execCount.textContent = countType(events, 'EXEC').toLocaleString();
-  els.readCount.textContent = countType(events, 'RO').toLocaleString();
-  els.connectCount.textContent = countType(events, 'CONNECT').toLocaleString();
-}
-
-function countType(events, type) {
-  return events.filter((event) => event.type === type).length;
+  els.execCount.textContent = counts.EXEC.toLocaleString();
+  els.readCount.textContent = counts.RO.toLocaleString();
+  els.connectCount.textContent = counts.CONNECT.toLocaleString();
 }
 
 function renderGraph(events) {
+  graphSimulation?.stop();
+  graphSimulation = null;
+
   const svg = graphSvg;
   const { width, height } = dimensions(svg.node());
   svg.attr('viewBox', [0, 0, width, height]);
   svg.selectAll('*').remove();
 
-  const processIdentityByPid = buildProcessIdentityIndex(state.events);
+  const identityByPid = getProcessIdentityIndex();
   const nodesById = new Map();
   const linksById = new Map();
 
   for (const event of events) {
-    const processIdentity = processIdentityFor(event, processIdentityByPid);
+    const processIdentity = processIdentityFor(event, identityByPid);
     const processId = `process:${processIdentity.key}`;
     ensureNode(nodesById, processId, processIdentity.label, 'process', event);
 
@@ -165,7 +197,7 @@ function renderGraph(events) {
     }
 
     if (event.ppid) {
-      const parentIdentity = processIdentityByPid.get(event.ppid) || {
+      const parentIdentity = identityByPid.get(event.ppid) || {
         key: `pid:${event.ppid}`,
         label: 'unknown parent',
       };
@@ -217,7 +249,7 @@ function renderGraph(events) {
   node.on('mousemove', (event, d) => showTooltip(event, nodeTooltip(d)))
     .on('mouseleave', hideTooltip);
 
-  const simulation = d3.forceSimulation(nodes)
+  graphSimulation = d3.forceSimulation(nodes)
     .force('link', d3.forceLink(links).id((d) => d.id).distance((d) => d.type === 'PPID' ? 155 : 225).strength(0.55))
     .force('charge', d3.forceManyBody().strength(-450).distanceMax(850))
     .force('center', d3.forceCenter(width / 2, height / 2))
@@ -234,7 +266,15 @@ function renderGraph(events) {
       node.attr('transform', (d) => `translate(${d.x},${d.y})`);
     });
 
-  node.call(drag(simulation));
+  node.call(drag(graphSimulation));
+}
+
+function getProcessIdentityIndex() {
+  if (processIdentityRevision !== state.eventsRevision) {
+    processIdentityByPid = buildProcessIdentityIndex(state.events);
+    processIdentityRevision = state.eventsRevision;
+  }
+  return processIdentityByPid;
 }
 
 function ensureNode(map, id, label, kind, event) {
@@ -256,34 +296,41 @@ function ensureLink(map, source, target, type, event) {
 
 function buildProcessIdentityIndex(events) {
   const index = new Map();
-  const candidatesByPid = new Map();
+  const bestExecByPid = new Map();
+  const parentNameByPid = new Map();
+  const activityNameByPid = new Map();
 
   for (const event of events) {
     if (event.type === 'EXEC' && event.host_pid && event.file) {
-      if (!candidatesByPid.has(event.host_pid)) candidatesByPid.set(event.host_pid, []);
-      candidatesByPid.get(event.host_pid).push(event);
+      const current = bestExecByPid.get(event.host_pid);
+      const score = executablePathScore(event);
+      if (!current || score > current.score) {
+        bestExecByPid.set(event.host_pid, { event, score });
+      }
+    }
+    if (event.type === 'EXEC' && event.ppid && event.comm && !parentNameByPid.has(event.ppid)) {
+      parentNameByPid.set(event.ppid, event.comm);
+    }
+    if (event.host_pid && event.comm && !activityNameByPid.has(event.host_pid)) {
+      activityNameByPid.set(event.host_pid, event.comm);
     }
   }
 
-  for (const [pid, candidates] of candidatesByPid) {
-    const executablePath = selectExecutablePath(candidates);
+  for (const [pid, candidate] of bestExecByPid) {
+    const executablePath = candidate.event.file;
     index.set(pid, { key: `path:${executablePath}`, label: executablePath });
   }
 
   // In EXEC records, comm names the calling task and ppid identifies that
   // parent. Use it when the parent's executable path is not present.
-  for (const event of events) {
-    if (event.type === 'EXEC' && event.ppid && !index.has(event.ppid) && event.comm) {
-      index.set(event.ppid, { key: `comm:${event.comm}`, label: event.comm });
-    }
+  for (const [pid, comm] of parentNameByPid) {
+    if (!index.has(pid)) index.set(pid, { key: `comm:${comm}`, label: comm });
   }
 
   // Some processes have activity records but no EXEC record in the retained
   // history. Group those by their observed comm value instead.
-  for (const event of events) {
-    if (event.host_pid && !index.has(event.host_pid) && event.comm) {
-      index.set(event.host_pid, { key: `comm:${event.comm}`, label: event.comm });
-    }
+  for (const [pid, comm] of activityNameByPid) {
+    if (!index.has(pid)) index.set(pid, { key: `comm:${comm}`, label: comm });
   }
 
   return index;
@@ -295,10 +342,6 @@ function processIdentityFor(event, processIdentityByPid) {
   const command = commandFromArgs(event.args) || basename(event.file);
   if (command) return { key: `command:${command}`, label: command };
   return { key: `pid:${event.host_pid || 'unknown'}`, label: 'unknown process' };
-}
-
-function selectExecutablePath(events) {
-  return [...events].sort((a, b) => executablePathScore(b) - executablePathScore(a))[0].file;
 }
 
 function executablePathScore(event) {
@@ -325,11 +368,15 @@ function graphTargetFor(event) {
   }
 
   const target = targetFor(event);
+  if (event.type === 'CONNECT') {
+    const protocol = String(event.protocol || 'unknown').toUpperCase();
+    return { key: `${protocol}:${target}`, label: `${protocol} ${target}` };
+  }
   return { key: target, label: target };
 }
 
 function graphTargetId(event, target, processId) {
-  if (event.type === 'RO' || event.type === 'RW') {
+  if (event.type === 'RO' || event.type === 'RW' || event.type === 'CONNECT') {
     return `${event.type}:${processId}:${target.key}`;
   }
   return `${event.type}:${target.key}`;
@@ -372,17 +419,17 @@ function renderTimeline(events) {
   svg.attr('viewBox', [0, 0, width, height]);
   svg.selectAll('*').remove();
 
-  const dated = events.filter((event) => event.time).map((event) => ({ ...event, date: new Date(event.time) }));
+  const dated = events.filter((event) => event.time).map((event) => new Date(event.time));
   els.rateMeta.textContent = `${dated.length} timed`;
   if (!dated.length) {
     drawEmpty(svg, width, height, 'Timed events appear here');
     return;
   }
 
-  const extent = d3.extent(dated, (d) => d.date);
+  const extent = d3.extent(dated);
   if (+extent[0] === +extent[1]) extent[1] = new Date(+extent[0] + 1000);
   const x = d3.scaleTime().domain(extent).range([margin.left, width - margin.right]);
-  const bins = d3.bin().value((d) => d.date).domain(x.domain()).thresholds(40)(dated);
+  const bins = d3.bin().domain(x.domain()).thresholds(40)(dated);
   const y = d3.scaleLinear().domain([0, d3.max(bins, (d) => d.length) || 1]).nice().range([height - margin.bottom, margin.top]);
 
   svg.append('g').attr('class', 'axis').attr('transform', `translate(0,${height - margin.bottom})`).call(d3.axisBottom(x).ticks(5));

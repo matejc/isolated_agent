@@ -58,8 +58,13 @@ func TestDNSCache(t *testing.T) {
 	if n, err := ParseResponse(c, 7, zeroTTL, tm); err != nil || n != 1 {
 		t.Fatalf("zero TTL parse = %d, %v", n, err)
 	}
-	if c.Count() != 2 {
-		t.Fatalf("zero TTL changed count to %d", c.Count())
+	zeroEntry := c.Find(7, 2, []byte{9, 9, 9, 9})
+	if zeroEntry == nil || len(zeroEntry.Names) != 1 {
+		t.Fatalf("zero TTL entry = %#v", zeroEntry)
+	}
+	c.Prune(tm + zeroTTLGracePeriod)
+	if c.Find(7, 2, []byte{9, 9, 9, 9}) != nil {
+		t.Fatal("zero TTL entry survived correlation grace period")
 	}
 
 	c.Put(8, 2, ip4, "duplicate.example", 1, tm)

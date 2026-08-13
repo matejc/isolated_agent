@@ -7,8 +7,9 @@ import (
 )
 
 const (
-	MaxNames    = 8
-	MaxHostname = 253
+	MaxNames          = 8
+	MaxHostname       = 253
+	zeroTTLGracePeriod = 5 * 1_000_000_000
 )
 
 type Name struct {
@@ -54,7 +55,7 @@ func (c *Cache) Find(id uint64, family int, address []byte) *Entry {
 func (c *Cache) Put(id uint64, family int, address []byte, name string, ttl uint32, now uint64) {
 	addressSize := addrSize(family)
 	name = cleanName(name)
-	if ttl == 0 || name == "" || len(name) > MaxHostname || addressSize == 0 || len(address) < addressSize || c.capacity <= 0 {
+	if name == "" || len(name) > MaxHostname || addressSize == 0 || len(address) < addressSize || c.capacity <= 0 {
 		return
 	}
 
@@ -82,6 +83,11 @@ func (c *Cache) Put(id uint64, family int, address []byte, name string, ttl uint
 
 	entry.TouchedNS = now
 	expires := now + uint64(ttl)*1_000_000_000
+	if ttl == 0 {
+		// A zero TTL forbids resolver caching, but this cache only correlates an
+		// observed DNS answer with the connection that immediately follows it.
+		expires = now + zeroTTLGracePeriod
+	}
 	for i := range entry.Names {
 		if strings.EqualFold(entry.Names[i].Value, name) {
 			entry.Names[i].ExpiresNS = expires
