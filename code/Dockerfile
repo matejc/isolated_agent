@@ -31,7 +31,8 @@ RUN curl -fsSL https://deb.nodesource.com/setup_24.x | bash - \
 RUN mkdir -p /usr/local/share/npm-global \
   && chmod 755 /usr/local/share/npm-global
 
-RUN npm install -g @just-every/code \
+ARG VERSION=latest
+RUN npm install -g @just-every/code@${VERSION} \
     && npm cache clean --force
 
 # Set npm global config for any user

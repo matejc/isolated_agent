@@ -32,8 +32,8 @@ RUN mkdir -p /usr/local/share/npm-global \
   && chmod 755 /usr/local/share/npm-global
 
 # Install codex from npm globally
-ARG CODEX_VERSION=latest
-RUN npm install -g @openai/codex@${CODEX_VERSION} \
+ARG VERSION=latest
+RUN npm install -g @openai/codex@${VERSION} \
     && npm cache clean --force
 
 # Set npm global config for any user
