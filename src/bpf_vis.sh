@@ -36,14 +36,8 @@ fi
 container=$1
 shift
 
-command -v node >/dev/null || { echo "node is required" >&2; exit 1; }
-command -v npm >/dev/null || { echo "npm is required" >&2; exit 1; }
-
-if [ ! -d "$VIS_DIR/node_modules" ]
-then
-    ( cd "$VIS_DIR" && npm install; ) >&2
-fi
-$VISUALIZATION &
+make -C "$VIS_DIR"
+$VISUALIZATION >/dev/null &
 children+=("$!")
 
 "$BPF_LOG" "$container" |

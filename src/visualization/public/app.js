@@ -6,11 +6,15 @@ const state = {
 };
 
 let graphSimulation = null;
+const graphPositions = new Map();
+let graphTopologySignature = null;
 let renderFrame = null;
 let processIdentityRevision = -1;
 let processIdentityByPid = new Map();
 let typeFilterRevision = -1;
 let availableTypes = ['all'];
+const MAX_ACCESS_TARGETS_PER_PROCESS = 12;
+const ACCESS_FILE_DETAIL_TARGET = 8;
 
 const typeColor = d3.scaleOrdinal()
   .domain(['EXEC', 'RO', 'RW', 'CONNECT'])
@@ -93,6 +97,8 @@ function connectStream() {
   source.addEventListener('clear', () => {
     state.events = [];
     state.queued = [];
+    graphPositions.clear();
+    graphTopologySignature = null;
     markEventsChanged();
     scheduleRender();
   });
@@ -125,7 +131,7 @@ function filteredEvents() {
   const command = els.commandFilter.value.trim().toLowerCase();
   const text = els.textFilter.value.trim().toLowerCase();
 
-  return state.events.slice(-limit).filter((event) => {
+  return diverseEvents(state.events, limit).filter((event) => {
     if (type !== 'all' && event.type !== type) return false;
     if (command && !(event.comm || '').toLowerCase().includes(command)) return false;
     if (text) {
@@ -137,6 +143,53 @@ function filteredEvents() {
     }
     return true;
   });
+}
+
+function diverseEvents(events, limit) {
+  if (events.length <= limit) return events;
+
+  const identityByPid = getProcessIdentityIndex();
+  const keys = events.map((event) => eventRelationshipKey(event, identityByPid));
+  const counts = d3.rollup(keys, (values) => values.length, (key) => key);
+  const keep = new Uint8Array(events.length);
+  keep.fill(1);
+  let removals = events.length - limit;
+
+  // Remove the oldest redundant examples while retaining the newest example
+  // of every relationship whenever the limit permits it.
+  for (let index = 0; index < events.length && removals > 0; index += 1) {
+    const key = keys[index];
+    if (counts.get(key) <= 1) continue;
+    keep[index] = 0;
+    counts.set(key, counts.get(key) - 1);
+    removals -= 1;
+  }
+
+  // If unique relationships alone exceed the cap, fall back to oldest-first.
+  for (let index = 0; index < events.length && removals > 0; index += 1) {
+    if (!keep[index]) continue;
+    keep[index] = 0;
+    removals -= 1;
+  }
+
+  return events.filter((_, index) => keep[index]);
+}
+
+function eventRelationshipKey(event, identityByPid) {
+  const processIdentity = processIdentityFor(event, identityByPid);
+  const processKey = processIdentity.key;
+
+  if (event.type === 'EXEC') {
+    const parentKey = event.ppid ? identityByPid.get(event.ppid)?.key || `pid:${event.ppid}` : 'none';
+    return `EXEC:${parentKey}->${processKey}`;
+  }
+  if (event.type === 'RO' || event.type === 'RW') {
+    return `${event.type}:${processKey}:${event.path || event.file || 'unknown file'}`;
+  }
+  if (event.type === 'CONNECT') {
+    return `CONNECT:${processKey}:${String(event.protocol || 'unknown').toUpperCase()}:${targetFor(event)}`;
+  }
+  return `${event.type}:${processKey}:${targetFor(event)}`;
 }
 
 function render() {
@@ -172,15 +225,12 @@ function renderStats(events) {
 }
 
 function renderGraph(events) {
-  graphSimulation?.stop();
-  graphSimulation = null;
-
   const svg = graphSvg;
   const { width, height } = dimensions(svg.node());
   svg.attr('viewBox', [0, 0, width, height]);
-  svg.selectAll('*').remove();
 
   const identityByPid = getProcessIdentityIndex();
+  const accessDirectoryRollups = buildAccessDirectoryRollups(events, identityByPid);
   const nodesById = new Map();
   const linksById = new Map();
 
@@ -190,28 +240,61 @@ function renderGraph(events) {
     ensureNode(nodesById, processId, processIdentity.label, 'process', event);
 
     if (event.type !== 'EXEC') {
-      const target = graphTargetFor(event);
+      const target = graphTargetFor(event, processId, accessDirectoryRollups);
       const targetId = graphTargetId(event, target, processId);
       ensureNode(nodesById, targetId, target.label, event.type, event);
       ensureLink(linksById, processId, targetId, event.type, event);
     }
 
     if (event.ppid) {
-      const parentIdentity = identityByPid.get(event.ppid) || {
-        key: `pid:${event.ppid}`,
-        label: 'unknown parent',
-      };
-      const parentId = `process:${parentIdentity.key}`;
-      ensureNode(nodesById, parentId, parentIdentity.label, 'parent', event);
-      if (parentId !== processId) {
-        ensureLink(linksById, parentId, processId, 'PPID', event);
+      const parentIdentity = identityByPid.get(event.ppid);
+      if (parentIdentity) {
+        const parentId = `process:${parentIdentity.key}`;
+        ensureNode(nodesById, parentId, parentIdentity.label, 'parent', event);
+        if (parentId !== processId) {
+          ensureLink(linksById, parentId, processId, 'PPID', event);
+        }
       }
     }
   }
 
   const nodes = [...nodesById.values()];
   const links = [...linksById.values()];
+  const nodesWithObservedParents = new Set(
+    links.filter((link) => link.type === 'PPID').map((link) => link.target),
+  );
+  let restoredNodeCount = 0;
+  for (const node of nodes) {
+    node.isRoot = (node.kind === 'process' || node.kind === 'parent') && !nodesWithObservedParents.has(node.id);
+    const saved = graphPositions.get(node.id);
+    if (saved) {
+      node.x = saved.x;
+      node.y = saved.y;
+      restoredNodeCount += 1;
+    }
+  }
+  assignComponentCenters(nodes, links, width, height);
   els.graphMeta.textContent = `${events.length} events, ${nodes.length} nodes, ${links.length} links`;
+
+  const topologySignature = JSON.stringify({
+    nodes: nodes.map((node) => [node.id, node.label, node.kind, node.isRoot]).sort(),
+    links: links.map((link) => [link.id, link.source, link.target, link.type]).sort(),
+  });
+
+  if (topologySignature === graphTopologySignature) {
+    svg.selectAll('.node').each(function updateNode(d) {
+      const updated = nodesById.get(d.id);
+      if (!updated) return;
+      d.count = updated.count;
+      d.samples = updated.samples;
+    });
+    return;
+  }
+
+  graphTopologySignature = topologySignature;
+  graphSimulation?.stop();
+  graphSimulation = null;
+  svg.selectAll('*').remove();
 
   if (!nodes.length) {
     drawEmpty(svg, width, height, 'Post event lines to see process links');
@@ -221,13 +304,28 @@ function renderGraph(events) {
   const zoomLayer = svg.append('g');
   svg.call(d3.zoom().scaleExtent([0.45, 3]).on('zoom', ({ transform }) => zoomLayer.attr('transform', transform)));
 
+  zoomLayer.append('defs')
+    .append('marker')
+    .attr('id', 'graph-arrowhead')
+    .attr('viewBox', '0 -5 24 10')
+    .attr('refX', 22)
+    .attr('refY', 0)
+    .attr('markerWidth', 24)
+    .attr('markerHeight', 10)
+    .attr('orient', 'auto')
+    .attr('markerUnits', 'userSpaceOnUse')
+    .append('path')
+    .attr('d', 'M0,-4L9,0L0,4Z')
+    .attr('fill', '#6c7780');
+
   const link = zoomLayer.append('g')
     .selectAll('line')
     .data(links)
     .join('line')
     .attr('class', 'link')
     .attr('stroke-width', (d) => d.type === 'PPID' ? 1 : 1.8)
-    .attr('stroke', (d) => d.type === 'PPID' ? '#6c7780' : typeColor(d.type));
+    .attr('stroke', (d) => d.type === 'PPID' ? '#6c7780' : typeColor(d.type))
+    .attr('marker-end', (d) => d.type === 'PPID' ? 'url(#graph-arrowhead)' : null);
 
   const node = zoomLayer.append('g')
     .selectAll('g')
@@ -236,10 +334,10 @@ function renderGraph(events) {
     .attr('class', 'node');
 
   node.append('circle')
-    .attr('r', (d) => d.kind === 'process' ? 12 : 8)
-    .attr('fill', (d) => d.kind === 'process' ? '#edf2f4' : typeColor(d.kind))
-    .attr('stroke', '#101214')
-    .attr('stroke-width', 2);
+    .attr('r', (d) => d.kind === 'process' || d.kind === 'parent' ? 12 : 8)
+    .attr('fill', (d) => d.kind === 'process' || d.kind === 'parent' ? '#edf2f4' : typeColor(d.kind))
+    .attr('stroke', (d) => d.isRoot ? 'var(--other)' : '#101214')
+    .attr('stroke-width', (d) => d.isRoot ? 4 : 2);
 
   node.append('text')
     .attr('x', 13)
@@ -250,11 +348,14 @@ function renderGraph(events) {
     .on('mouseleave', hideTooltip);
 
   graphSimulation = d3.forceSimulation(nodes)
-    .force('link', d3.forceLink(links).id((d) => d.id).distance((d) => d.type === 'PPID' ? 155 : 225).strength(0.55))
+    .alpha(restoredNodeCount ? 0.35 : 1)
+    .force('link', d3.forceLink(links).id((d) => d.id).distance((d) => d.type === 'PPID' ? 540 : 150).strength(0.55))
     .force('charge', d3.forceManyBody().strength(-450).distanceMax(850))
-    .force('center', d3.forceCenter(width / 2, height / 2))
-    .force('x', d3.forceX(width / 2).strength(0.02))
-    .force('y', d3.forceY(height / 2).strength(0.02))
+    .force('processSeparation', d3.forceManyBody()
+      .strength((d) => d.kind === 'process' || d.kind === 'parent' ? -1350 : 0)
+      .distanceMax(1400))
+    .force('x', d3.forceX((d) => d.componentX).strength(0.08))
+    .force('y', d3.forceY((d) => d.componentY).strength(0.08))
     .force('collision', d3.forceCollide().radius(46).strength(0.9).iterations(2))
     .on('tick', () => {
       link
@@ -264,6 +365,7 @@ function renderGraph(events) {
         .attr('y2', (d) => d.target.y);
 
       node.attr('transform', (d) => `translate(${d.x},${d.y})`);
+      for (const d of nodes) graphPositions.set(d.id, { x: d.x, y: d.y });
     });
 
   node.call(drag(graphSimulation));
@@ -278,7 +380,7 @@ function getProcessIdentityIndex() {
 }
 
 function ensureNode(map, id, label, kind, event) {
-  if (!map.has(id)) map.set(id, { id, label, kind, count: 0, samples: [] });
+  if (!map.has(id)) map.set(id, { id, label, kind, isRoot: false, count: 0, samples: [] });
   const node = map.get(id);
   if (node.kind === 'parent' && kind === 'process') {
     node.kind = 'process';
@@ -294,10 +396,46 @@ function ensureLink(map, source, target, type, event) {
   map.get(id).count += 1;
 }
 
+function assignComponentCenters(nodes, links, width, height) {
+  const parent = new Map(nodes.map((node) => [node.id, node.id]));
+  const find = (id) => {
+    let root = id;
+    while (parent.get(root) !== root) root = parent.get(root);
+    while (parent.get(id) !== id) {
+      const next = parent.get(id);
+      parent.set(id, root);
+      id = next;
+    }
+    return root;
+  };
+
+  for (const link of links) {
+    const sourceRoot = find(link.source);
+    const targetRoot = find(link.target);
+    if (sourceRoot !== targetRoot) parent.set(targetRoot, sourceRoot);
+  }
+
+  const components = d3.groups(nodes, (node) => find(node.id))
+    .map(([, members]) => members)
+    .sort((a, b) => d3.descending(a.length, b.length));
+  const columns = Math.max(1, Math.ceil(Math.sqrt(components.length * width / height)));
+  const rows = Math.ceil(components.length / columns);
+
+  components.forEach((members, index) => {
+    const column = index % columns;
+    const row = Math.floor(index / columns);
+    const componentX = (column + 0.5) * width / columns;
+    const componentY = (row + 0.5) * height / rows;
+    for (const node of members) {
+      node.componentX = componentX;
+      node.componentY = componentY;
+    }
+  });
+}
+
 function buildProcessIdentityIndex(events) {
   const index = new Map();
   const bestExecByPid = new Map();
-  const parentNameByPid = new Map();
   const activityNameByPid = new Map();
 
   for (const event of events) {
@@ -308,9 +446,6 @@ function buildProcessIdentityIndex(events) {
         bestExecByPid.set(event.host_pid, { event, score });
       }
     }
-    if (event.type === 'EXEC' && event.ppid && event.comm && !parentNameByPid.has(event.ppid)) {
-      parentNameByPid.set(event.ppid, event.comm);
-    }
     if (event.host_pid && event.comm && !activityNameByPid.has(event.host_pid)) {
       activityNameByPid.set(event.host_pid, event.comm);
     }
@@ -319,12 +454,6 @@ function buildProcessIdentityIndex(events) {
   for (const [pid, candidate] of bestExecByPid) {
     const executablePath = candidate.event.file;
     index.set(pid, { key: `path:${executablePath}`, label: executablePath });
-  }
-
-  // In EXEC records, comm names the calling task and ppid identifies that
-  // parent. Use it when the parent's executable path is not present.
-  for (const [pid, comm] of parentNameByPid) {
-    if (!index.has(pid)) index.set(pid, { key: `comm:${comm}`, label: comm });
   }
 
   // Some processes have activity records but no EXEC record in the retained
@@ -358,12 +487,97 @@ function executablePathScore(event) {
   return score;
 }
 
-function graphTargetFor(event) {
+function buildAccessDirectoryRollups(events, identityByPid) {
+  const directoriesByGroup = new Map();
+  const filesByGroup = new Map();
+
+  for (const event of events) {
+    if (event.type !== 'RO' && event.type !== 'RW') continue;
+    const processIdentity = processIdentityFor(event, identityByPid);
+    const processId = `process:${processIdentity.key}`;
+    const groupId = `${processId}:${event.type}`;
+    const file = event.path || event.file || 'unknown file';
+    const directory = parentDirectoryFor(file);
+    if (!directoriesByGroup.has(groupId)) directoriesByGroup.set(groupId, new Set());
+    if (!filesByGroup.has(groupId)) filesByGroup.set(groupId, new Set());
+    directoriesByGroup.get(groupId).add(directory);
+    filesByGroup.get(groupId).add(file);
+  }
+
+  const rollups = new Map();
+  for (const [groupId, directories] of directoriesByGroup) {
+    const currentByOriginal = new Map([...directories].map((directory) => [directory, directory]));
+    let distinct = new Set(currentByOriginal.values());
+
+    while (distinct.size > MAX_ACCESS_TARGETS_PER_PROCESS) {
+      let changed = false;
+      for (const [original, current] of currentByOriginal) {
+        const candidate = parentDirectoryFor(current);
+        const parent = current !== '/' && candidate === '/' ? current : candidate;
+        if (parent !== current) changed = true;
+        currentByOriginal.set(original, parent);
+      }
+      distinct = new Set(currentByOriginal.values());
+      if (!changed) break;
+    }
+
+    for (const [original, directory] of currentByOriginal) {
+      rollups.set(`${groupId}:${original}`, {
+        directory,
+        aggregated: true,
+      });
+    }
+
+    // When directory grouping leaves a sparse graph, promote individual files
+    // until the group has at most ACCESS_FILE_DETAIL_TARGET total targets.
+    if (distinct.size < ACCESS_FILE_DETAIL_TARGET) {
+      const files = [...filesByGroup.get(groupId)].sort();
+      const targetByFile = new Map(files.map((file) => [
+        file,
+        currentByOriginal.get(parentDirectoryFor(file)),
+      ]));
+
+      for (const file of files) {
+        const previous = targetByFile.get(file);
+        targetByFile.set(file, file);
+        if (new Set(targetByFile.values()).size > ACCESS_FILE_DETAIL_TARGET) {
+          targetByFile.set(file, previous);
+        }
+      }
+
+      const remainingDirectoryTargets = new Set(
+        [...targetByFile].filter(([file, target]) => file !== target).map(([, target]) => target),
+      );
+      for (const [file, target] of targetByFile) {
+        if (file === target) {
+          rollups.set(`file:${groupId}:${file}`, { directory: file, aggregated: false });
+        }
+      }
+      for (const [original, directory] of currentByOriginal) {
+        if (remainingDirectoryTargets.has(directory)) {
+          rollups.get(`${groupId}:${original}`).aggregated = true;
+        }
+      }
+    }
+  }
+
+  return rollups;
+}
+
+function graphTargetFor(event, processId, accessDirectoryRollups) {
   if (event.type === 'RO' || event.type === 'RW') {
-    const directory = parentDirectoryFor(event.path || event.file);
+    const file = event.path || event.file || 'unknown file';
+    const directory = parentDirectoryFor(file);
+    const groupId = `${processId}:${event.type}`;
+    const rollup = accessDirectoryRollups.get(`file:${groupId}:${file}`)
+      || accessDirectoryRollups.get(`${groupId}:${directory}`);
+    const rolledUp = rollup?.directory || directory;
+    const displayTarget = rollup?.aggregated
+      ? (rolledUp === '/' ? '/*' : `${rolledUp}/*`)
+      : rolledUp;
     return {
-      key: directory,
-      label: `${event.type} ${directory}`,
+      key: rolledUp,
+      label: `${event.type} ${displayTarget}`,
     };
   }
 
@@ -534,7 +748,24 @@ function compactLabel(label) {
 function compactPath(value, maxLength) {
   if (value.length <= maxLength) return value;
   const parts = value.split('/').filter(Boolean);
-  return parts.length > 2 ? `/${parts.slice(-2).join('/')}` : `${value.slice(0, maxLength - 3)}...`;
+  if (parts.length > 1) {
+    const parent = parts.at(-2);
+    const filename = parts.at(-1);
+    const dot = filename.lastIndexOf('.');
+    const extension = dot > 0 && filename.length - dot <= 10 ? filename.slice(dot) : '';
+    const stem = extension ? filename.slice(0, dot) : filename;
+    const prefix = `.../${parent}/`;
+    const stemLength = Math.max(3, maxLength - prefix.length - extension.length - 1);
+    const compactFilename = stem.length > stemLength
+      ? `${stem.slice(0, stemLength)}*${extension}`
+      : filename;
+    const compact = `${prefix}${compactFilename}`;
+    if (compact.length <= maxLength) return compact;
+
+    const parentLength = Math.max(3, maxLength - compactFilename.length - 6);
+    return `.../${parent.slice(0, parentLength)}*/${compactFilename}`;
+  }
+  return `${value.slice(0, maxLength - 3)}...`;
 }
 
 function formatTime(value) {
@@ -545,7 +776,9 @@ function formatTime(value) {
 }
 
 function nodeTooltip(d) {
-  return `<strong>${escapeHtml(d.label)}</strong><br>${escapeHtml(d.kind)} - ${d.count} events<br>${d.samples.map(escapeHtml).join('<br>')}`;
+  const nodeKind = d.kind === 'parent' ? 'process' : d.kind;
+  const role = d.isRoot ? `${nodeKind}, root command (no observed parent)` : nodeKind;
+  return `<strong>${escapeHtml(d.label)}</strong><br>${escapeHtml(role)} - ${d.count} events<br>${d.samples.map(escapeHtml).join('<br>')}`;
 }
 
 function showTooltip(event, html) {
@@ -579,10 +812,12 @@ function drag(simulation) {
     .on('drag', (event, d) => {
       d.fx = event.x;
       d.fy = event.y;
+      graphPositions.set(d.id, { x: event.x, y: event.y });
     })
     .on('end', (event, d) => {
       if (!event.active) simulation.alphaTarget(0);
       d.fx = null;
       d.fy = null;
+      graphPositions.set(d.id, { x: d.x, y: d.y });
     });
 }

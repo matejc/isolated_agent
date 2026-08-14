@@ -5,15 +5,14 @@
 #define O_WRONLY  00000001
 #define O_RDWR    00000002
 
-
 /*
  * Executed programs
  */
-tracepoint:syscalls:sys_enter_execve
-/cgroup == $1/
+tracepoint:sched:sched_process_exec
+/cgroup == $1 && curtask->nsproxy->mnt_ns->ns.inum == $2/
 {
     printf(
-        "EXEC time=%s host_pid=%d ppid=%d uid=%d comm=%s file=%s args=",
+        "EXEC time=%s host_pid=%d ppid=%d uid=%d comm=%s file=%s\n",
         strftime("%Y-%m-%dT%H:%M:%S.%fZ", nsecs),
         pid,
         ppid,
@@ -21,52 +20,30 @@ tracepoint:syscalls:sys_enter_execve
         comm,
         str(args.filename)
     );
-    join(args.argv);
 }
 
-tracepoint:syscalls:sys_enter_execveat
-/cgroup == $1/
-{
-    printf(
-        "EXECAT time=%s host_pid=%d ppid=%d uid=%d comm=%s file=%s args=",
-        strftime("%Y-%m-%dT%H:%M:%S.%fZ", nsecs),
-        pid,
-        ppid,
-        uid,
-        comm,
-        str(args.filename)
-    );
-    join(args.argv);
-}
-
-/* File-open intent, classified by the requested access mode. */
-tracepoint:syscalls:sys_enter_openat
+/* All open-family syscalls converge here after a struct file is created. */
+kfunc:security_file_open
 /cgroup == $1 &&
- ((uint32)args.flags & O_ACCMODE) == O_RDONLY/
+ curtask->nsproxy->mnt_ns->ns.inum == $2 &&
+ ((uint32)args.file->f_flags & O_ACCMODE) == O_RDONLY/
 {
     printf(
         "RO time=%s host_pid=%d uid=%d comm=%s path=%s flags=0x%x\n",
         strftime("%Y-%m-%dT%H:%M:%S.%fZ", nsecs),
-        pid,
-        uid,
-        comm,
-        str(args.filename),
-        args.flags
+        pid, uid, comm, path(args.file->f_path), args.file->f_flags
     );
 }
 
-tracepoint:syscalls:sys_enter_openat
+kfunc:security_file_open
 /cgroup == $1 &&
- (((uint32)args.flags & O_ACCMODE) == O_WRONLY ||
-  ((uint32)args.flags & O_ACCMODE) == O_RDWR)/
+ curtask->nsproxy->mnt_ns->ns.inum == $2 &&
+ (((uint32)args.file->f_flags & O_ACCMODE) == O_WRONLY ||
+  ((uint32)args.file->f_flags & O_ACCMODE) == O_RDWR)/
 {
     printf(
         "RW time=%s host_pid=%d uid=%d comm=%s path=%s flags=0x%x\n",
         strftime("%Y-%m-%dT%H:%M:%S.%fZ", nsecs),
-        pid,
-        uid,
-        comm,
-        str(args.filename),
-        args.flags
+        pid, uid, comm, path(args.file->f_path), args.file->f_flags
     );
 }

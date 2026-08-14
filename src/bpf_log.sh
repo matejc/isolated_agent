@@ -14,7 +14,7 @@ usage()
 
 resolve_container_cgroup()
 {
-    local container=$1 running pid rel path
+    local container=$1 running pid cgroup_mount rel path fs_type
 
     read -r running pid < <(
         docker inspect --format '{{.State.Running}} {{.State.Pid}}' "$container"
@@ -24,6 +24,20 @@ resolve_container_cgroup()
         return 1
     fi
 
+    # With a private cgroup namespace (Docker's default on cgroup v2),
+    # /proc/$pid/cgroup commonly contains "0::/".  Interpreting that path in
+    # the host namespace selects the host cgroup root, not the container's
+    # cgroup.  The cgroup2 mount visible through the process root is mounted at
+    # the container's namespace root, so its inode is the kernel cgroup ID that
+    # bpftrace's `cgroup` builtin reports.
+    cgroup_mount="/proc/$pid/root/sys/fs/cgroup"
+    fs_type=$(stat -Lfc '%T' "$cgroup_mount" 2>/dev/null || true)
+    if [[ $fs_type == cgroup2fs ]]; then
+        stat -Lc '%i' "$cgroup_mount"
+        return
+    fi
+
+    # Fallback for hosts/containers which share the host cgroup namespace.
     rel=$(awk -F: '$1 == "0" { print $3; exit }' "/proc/$pid/cgroup")
     if [[ -z $rel ]]; then
         echo "cannot resolve cgroup v2 path for container PID $pid" >&2
@@ -36,6 +50,27 @@ resolve_container_cgroup()
     fi
 
     stat -Lc '%i' "$path"
+}
+
+resolve_container_mntns()
+{
+    local container=$1 running pid ns
+
+    read -r running pid < <(
+        docker inspect --format '{{.State.Running}} {{.State.Pid}}' "$container"
+    ) || return 1
+    if [[ $running != true || ! $pid =~ ^[1-9][0-9]*$ ]]; then
+        echo "container is not running: $container" >&2
+        return 1
+    fi
+
+    ns="/proc/$pid/ns/mnt"
+    if [[ ! -e $ns ]]; then
+        echo "cannot resolve mount namespace for container PID $pid" >&2
+        return 1
+    fi
+
+    stat -Lc '%i' "$ns"
 }
 
 children=()
@@ -72,11 +107,12 @@ make -C "$NETMON_DIR" >&2
 [[ -x $NETMON ]] || { echo "missing network monitor executable: $NETMON" >&2; exit 1; }
 
 cgroup_id=$(resolve_container_cgroup "$container")
+mntns_id=$(resolve_container_mntns "$container")
 sudo -v
 
-echo "starting container audit and network monitor for $container (cgroup ID $cgroup_id)" >&2
+echo "starting container audit and network monitor for $container (cgroup ID $cgroup_id, mount namespace ID $mntns_id)" >&2
 
-sudo env TZ=UTC bpftrace "$AUDIT" "$cgroup_id" &
+sudo env TZ=UTC bpftrace "$AUDIT" "$cgroup_id" "$mntns_id" &
 children+=("$!")
 
 sudo "$NETMON" --cgroup-id "$cgroup_id" "$@" &
