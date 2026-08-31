@@ -1,6 +1,7 @@
-/*/state/
+/agents/*/state/
 /src/netmon-go/netmon
 /src/netmon-go/cmd/netmon/netmon_bpfel.go
 *.o
-/src/visualization/node_modules
-/src/.code
+node_modules
+.code
+.crush

@@ -8,13 +8,13 @@ Build the local image of Codex agent and runs it in foreground
 Codex agent container is named `isolated_codex`
 
 ```bash
-./codex/run.sh /path/to/your/workdir
+./agents/run.sh codex /path/to/your/workdir
 ```
 
 
 ### Run inspection tool
 
-For prerequirements check shell.nix and run: 
+For prerequirements check shell.nix or just run: 
 
 ```
 nix-shell

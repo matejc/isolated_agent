@@ -1,4 +1,4 @@
-FROM ubuntu:24.04
+FROM ubuntu:26.04
 
 # Install basic development tools, ca-certificates, and iptables/ipset, then clean up apt cache to reduce image size
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -20,6 +20,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   unzip \
   ripgrep \
   patch \
+  binutils \
   && rm -rf /var/lib/apt/lists/*
 
 # Install Node.js 24
