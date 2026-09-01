@@ -15,7 +15,7 @@ run_agent() {
     docker build "$SCRIPT_DIR/$agentName" --build-arg "VERSION=$agentVersion" -t "$dockerName"
 
     docker run --name "$dockerName" \
-        -v "${1?"Error: missing first argument: Path to workdir!"}:/workspace" \
+        -v "${workspaceDir?"Error: missing first argument: Path to workdir!"}:/workspace" \
         "${extraDockerArgs[@]}" \
         -it "$dockerName"
 }
