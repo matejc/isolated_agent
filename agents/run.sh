@@ -59,5 +59,9 @@ case "$agentName" in
             "${extraArgs[@]}"
         )
         ;;
+    *)
+        echo "Error: agent with name '$agentName' does not exist!" >&2
+        exit 1
+        ;;
 esac
 run_agent "$agentName" "$agentVersion" "$workspaceDir" "${extraDockerArgs[@]}"
