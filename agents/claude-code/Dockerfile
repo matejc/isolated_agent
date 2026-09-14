@@ -44,7 +44,4 @@ ENV PATH=$PATH:/usr/local/share/npm-global/bin
 RUN mkdir -p /workspace
 WORKDIR /workspace
 
-COPY ./run.sh /usr/bin/run.sh
-RUN chmod +x /usr/bin/run.sh
-
-CMD [ "/usr/bin/run.sh" ]
+CMD [ "claude" ]
