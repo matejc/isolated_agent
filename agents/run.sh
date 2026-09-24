@@ -23,52 +23,52 @@ run_agent() {
 agentName="${1?"Error: missing supported agent name as first argument!"}"
 workspaceDir="${2?"Error: missing workspace dir as second argument!"}"
 extraArgs=("${@:3}")
-agentDir="$SCRIPT_DIR/$agentName"
+stateDir="${AGENT_STATE_DIR:-"${XDG_STATE_HOME:-"$HOME/.local/state"}/isolated_agent/$agentName"}"
 case "$agentName" in
     "crush")
         agentVersion="${CRUSH_VERSION:-$(curl -fsSL https://api.github.com/repos/charmbracelet/crush/releases/latest | jq -r '.tag_name')}"
         extraDockerArgs=(
-            -v "$agentDir/state/config:/root/.config/crush"
-            -v "$agentDir/state/state:/root/.local/state/crush"
-            -v "$agentDir/state/share:/root/.local/share/crush"
-            -v "$agentDir/state/cache:/root/.cache/crush"
+            -v "$stateDir/config:/root/.config/crush"
+            -v "$stateDir/state:/root/.local/state/crush"
+            -v "$stateDir/share:/root/.local/share/crush"
+            -v "$stateDir/cache:/root/.cache/crush"
             "${extraArgs[@]}"
         )
         ;;
     "codex")
         agentVersion="${CODEX_VERSION:-$(curl -fsSL https://registry.npmjs.org/@openai/codex/latest | jq -r '.version')}"
         extraDockerArgs=(
-            -v "$agentDir/state:/root/.codex"
+            -v "$stateDir:/root/.codex"
             "${extraArgs[@]}"
         )
         ;;
     "claude-code")
         agentVersion="${CLAUDE_CODE_VERSION:-$(curl -fsSL https://registry.npmjs.org/@anthropic-ai/claude-code/latest | jq -r '.version')}"
         extraDockerArgs=(
-            -v "$agentDir/state:/root/.claude"
-            -v "$agentDir/state/.claude.json:/root/.claude.json"
+            -v "$stateDir:/root/.claude"
+            -v "$stateDir/.claude.json:/root/.claude.json"
             "${extraArgs[@]}"
         )
-        mkdir -p "$agentDir/state"
-        if [ ! -f "$agentDir/state/.claude.json" ]
+        mkdir -p "$stateDir"
+        if [ ! -f "$stateDir/.claude.json" ]
         then
-            echo '{}' > "$agentDir/state/.claude.json"
+            echo '{}' > "$stateDir/.claude.json"
         fi
         ;;
     "code")
         agentVersion="${CODE_VERSION:-$(curl -fsSL https://registry.npmjs.org/@just-every/code/latest | jq -r '.version')}"
         extraDockerArgs=(
-            -v "$agentDir/state:/root/.code"
+            -v "$stateDir:/root/.code"
             "${extraArgs[@]}"
         )
         ;;
     "opencode")
         agentVersion="${OPENCODE_VERSION:-$(curl -fsSL 'https://hub.docker.com/v2/repositories/openeuler/opencode/tags?page_size=100&ordering=last_updated' | jq -r '.results | map(select(.name != "latest"))[0].name')}"
         extraDockerArgs=(
-            -v "$agentDir/state/config:/root/.config/opencode"
-            -v "$agentDir/state/state:/root/.local/state/opencode"
-            -v "$agentDir/state/share:/root/.local/share/opencode"
-            -v "$agentDir/state/cache:/root/.cache/opencode"
+            -v "$stateDir/config:/root/.config/opencode"
+            -v "$stateDir/state:/root/.local/state/opencode"
+            -v "$stateDir/share:/root/.local/share/opencode"
+            -v "$stateDir/cache:/root/.cache/opencode"
             "${extraArgs[@]}"
         )
         ;;
