@@ -46,7 +46,6 @@ case "$agentName" in
         agentVersion="${CLAUDE_CODE_VERSION:-$(curl -fsSL https://registry.npmjs.org/@anthropic-ai/claude-code/latest | jq -r '.version')}"
         extraDockerArgs=(
             -v "$stateDir:/root/.claude"
-            -v "$stateDir/.claude.json:/root/.claude.json"
             "${extraArgs[@]}"
         )
         mkdir -p "$stateDir"

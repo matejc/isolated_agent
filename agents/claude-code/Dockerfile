@@ -44,4 +44,6 @@ ENV PATH=$PATH:/usr/local/share/npm-global/bin
 RUN mkdir -p /workspace
 WORKDIR /workspace
 
+RUN ln -s /root/.claude/.claude.json /root/.claude.json
+
 CMD [ "claude" ]
