@@ -42,6 +42,13 @@ case "$agentName" in
             "${extraArgs[@]}"
         )
         ;;
+    "pi")
+        agentVersion="${CODEX_VERSION:-$(curl -fsSL https://registry.npmjs.org/@earendil-works/pi-coding-agent/latest | jq -r '.version')}"
+        extraDockerArgs=(
+            -v "$stateDir:/root/.pi"
+            "${extraArgs[@]}"
+        )
+        ;;
     "claude-code")
         agentVersion="${CLAUDE_CODE_VERSION:-$(curl -fsSL https://registry.npmjs.org/@anthropic-ai/claude-code/latest | jq -r '.version')}"
         extraDockerArgs=(
