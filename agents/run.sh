@@ -20,7 +20,7 @@ run_agent() {
         -it "$dockerName"
 }
 
-agentName="${1?"Error: missing supported agent name as first argument!"}"
+agentName="${1?"Error: missing supported agent name as first argument:$(echo; find "${AGENTS_DIR:-"$SCRIPT_DIR"}" -maxdepth 1 -mindepth 1 -type d -printf '%f\n')"}"
 workspaceDir="${2?"Error: missing workspace dir as second argument!"}"
 extraArgs=("${@:3}")
 stateDir="${AGENT_STATE_DIR:-"${XDG_STATE_HOME:-"$HOME/.local/state"}/isolated_agent/$agentName"}"
