@@ -80,6 +80,14 @@ case "$agentName" in
             "${extraArgs[@]}"
         )
         ;;
+    "cursor")
+        agentVersion="latest"
+        extraDockerArgs=(
+            -v "$stateDir/config:/root/.config/cursor"
+            -v "$stateDir/home:/root/.cursor"
+            "${extraArgs[@]}"
+        )
+        ;;
     *)
         echo "Error: agent with name '$agentName' does not exist!" >&2
         exit 1
