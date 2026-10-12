@@ -6,7 +6,7 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 run_agent() {
     agentName="$1"
     agentVersion="$2"
-    workspaceDir="$3"
+    workspaceMountSource="$3"
     extraDockerArgs=("${@:4}")
     dockerName="isolated_$agentName"
 
@@ -15,13 +15,14 @@ run_agent() {
     docker build "${AGENTS_DIR:-"$SCRIPT_DIR"}/$agentName" --build-arg "VERSION=$agentVersion" -t "$dockerName"
 
     docker run --name "$dockerName" \
-        -v "${workspaceDir?"Error: missing first argument: Path to workdir!"}:/workspace" \
+        -v "$workspaceMountSource:/workspace/$(basename "$workspaceMountSource")" \
         "${extraDockerArgs[@]}" \
         -it "$dockerName"
 }
 
 agentName="${1?"Error: missing supported agent name as first argument:$(echo; find "${AGENTS_DIR:-"$SCRIPT_DIR"}" -maxdepth 1 -mindepth 1 -type d -printf '%f\n')"}"
-workspaceDir="${2?"Error: missing workspace dir as second argument!"}"
+workspaceMountSource="$(realpath "${2?"Error: missing workspace mount source as second argument!"}")"
+sessionHash="$(echo "$workspaceMountSource" | sha256sum | cut -d ' ' -f1)"
 extraArgs=("${@:3}")
 stateDir="${AGENT_STATE_DIR:-"${XDG_STATE_HOME:-"$HOME/.local/state"}/isolated_agent/$agentName"}"
 case "$agentName" in
@@ -32,6 +33,7 @@ case "$agentName" in
             -v "$stateDir/state:/root/.local/state/crush"
             -v "$stateDir/share:/root/.local/share/crush"
             -v "$stateDir/cache:/root/.cache/crush"
+            -v "$stateDir/sessions/$sessionHash:/workspace/.crush"
             "${extraArgs[@]}"
         )
         ;;
@@ -83,4 +85,4 @@ case "$agentName" in
         exit 1
         ;;
 esac
-run_agent "$agentName" "$agentVersion" "$workspaceDir" "${extraDockerArgs[@]}"
+run_agent "$agentName" "$agentVersion" "$workspaceMountSource" "${extraDockerArgs[@]}"
